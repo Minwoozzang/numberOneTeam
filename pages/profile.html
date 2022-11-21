@@ -1,0 +1,18 @@
+<div id="profilePage">
+    <section id="profileWrapper">
+        <h2>프로필 관리</h2>
+        <form id="profileForm" onsubmit="changeProfile(event)">
+
+
+            <label id="imgLabel" for="imgInput">
+                <img id="profileView" src="/assets/blankProfile.webp" />
+                <input onchange="onFileChange(event)" id="imgInput" type="file" accept="images/*" />
+            </label>
+            <div>
+                <input id="profileNickname" type="text" placeholder="현재 닉네임" value="" />
+            </div>
+            <br />
+            <input id="profileBtn" type="submit" value="프로필 변경" />
+        </form>
+    </section>
+</div>
