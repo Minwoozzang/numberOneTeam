@@ -81,12 +81,34 @@ export const delete_comment = async (event) => {
   }
 };
 
+/*
+어제 - 지금 시점에서 어제 생성된 방명록 - 타임스탬프
+1+1 도 바귀어야 됨
+ */
+// 오늘 - 오늘 생성된 방명록
+// 내일 - 생성? 방명록은 없이 1+1 부분만 바뀌게
+
+// time = "yesterday", "today"
+// getCommentList("yesterday");
+// getCommentList("today");
+// firebase where clause
 export const getCommentList = async () => {
   let cmtObjList = [];
+  // const startOfDay = new Date();
+
+  // if (time === "yesterday") {
+  //   // createdAt <= startOfDay: 어제
+  //   const q = query(
+  //     collection(dbService, "comments").where("createdAt", "<=", startOfDay),
+  //     orderBy("createdAt", "desc")
+  //   );
+  // } else if (time === "today") {
+  //   // createdAt <= startOfDay: 어제
   const q = query(
     collection(dbService, "comments"),
     orderBy("createdAt", "desc")
   );
+
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     const commentObj = {
@@ -128,4 +150,56 @@ export const getCommentList = async () => {
     div.innerHTML = temp_html;
     commnetList.appendChild(div);
   });
+};
+
+export const getHomePageList = () => {
+  const temp_html = ` <div class="main-knowledge-box">
+  <div class="main-knowledge-text__basebox">
+    <span class="main-knowledge-text">
+      1조에서 가장 코딩 잘하는 사람 <br />
+      과연 누구일까요?? 나다 이새기야
+    </span>
+  </div>
+</div>
+
+<div id="left-right-page">
+  <button onclick="beforePage()" type="button" id="left-page">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <button onclick="nextPage()" type="button" id="right-page">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+</div>
+
+<div class="form-write-comment">
+  <div class="form-write-nickname">
+    <img
+      id="profileImg"
+      width="50em"
+      height="50em"
+      src="/assets/blankProfile.webp"
+    />
+    <span id="nickname">닉네임</span>
+  </div>
+
+  <div class="write-comment__textbox">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="댓글을 입력해주세요...1"
+      id="comment"
+    />
+    <button
+      onclick="save_comment(event)"
+      type="button"
+      class="write-comment__btn"
+    >
+      댓글 등록
+    </button>
+  </div>
+</div>`;
+  const wrap = document.querySelector(".wrap");
+  wrap.innerHTML = "";
+  wrap.innerHTML = temp_html;
+  getCommentList();
 };
