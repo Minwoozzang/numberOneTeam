@@ -28,12 +28,12 @@
           <button
             type="submit"
             id="authBtn"
-            value="로그인"
             class="container__right__login-form__insert__login"
           >
             로그인
           </button>
           <button
+            type="button"
             id="authToggle"
             onclick="onToggle()"
             class="container__right__login-form__insert__signup"
@@ -42,6 +42,42 @@
           </button>
         </section>
       </form>
+
+      <h3 class="container__right__login__information">
+        SNS 계정으로 로그인하기
+      </h3>
+
+      <div class="container__right__login__sns">
+        <button
+          name="google"
+          onclick="socialLogin(event)"
+          class="container__right__login__sns__button"
+        >
+          <img
+            src="./assets/google.png"
+            class="container__right__login__sns__google"
+          />
+        </button>
+        <button
+          name="github"
+          onclick="socialLogin(event)"
+          class="container__right__login__sns__button"
+        >
+          <img
+            src="./assets/github.png"
+            class="container__right__login__sns__github"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+
+
+
+
 
       <h3 class="container__right__login__information">
         SNS 계정으로 로그인하기
@@ -63,4 +99,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
