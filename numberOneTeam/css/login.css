@@ -1,0 +1,170 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* body {
+  overflow: hidden;
+  margin: 0;
+} */
+
+body {
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  margin: auto;
+  padding: 0;
+}
+
+.container__left {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  width: 170%;
+  height: 100%;
+}
+
+#authPage {
+  display: flex;
+  justify-content: center;
+  border: none;
+  width: 100%;
+}
+
+#authWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#authPage h1 {
+  font-size: 40px;
+}
+
+.container__right__login {
+  width: 500px;
+  height: 500px;
+}
+
+.container__right__login-form__account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.container__right__login-form__account__email {
+  margin-bottom: 20px;
+  border: none;
+  width: 450px;
+  height: 50px;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #e3e3e3;
+}
+
+.container__right__login-form__account__email:focus {
+  outline: none;
+}
+
+.container__right__login-form__account__password {
+  width: 450px;
+  height: 50px;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #e3e3e3;
+}
+
+.container__right__login-form__account__password:focus {
+  outline: none;
+}
+
+.container__right__login-form__insert {
+  display: flex;
+  justify-content: space-around;
+}
+
+#authBtnSection {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#authBtn {
+  width: 200px;
+  height: 50px;
+  font-size: 17px;
+  border: none;
+  border-radius: 20px;
+  transition: all 300ms ease-in;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+#authBtn:hover {
+  background-color: #0d99ff;
+  color: white;
+}
+
+#authToggle {
+  width: 200px;
+  height: 50px;
+  font-size: 17px;
+  border: none;
+  border-radius: 20px;
+  transition: all 300ms ease-in;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+#authToggle:hover {
+  background-color: #0d99ff;
+  color: white;
+}
+
+.container__right__login__information {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.container__right__login__sns__button {
+  border: none;
+  background-color: transparent;
+}
+
+.container__right__login__sns {
+  text-align: center;
+}
+
+.container__right__login__sns__google {
+  width: 68px;
+  height: 68px;
+  cursor: pointer;
+}
+
+.container__right__login__sns__google:hover {
+  transform: scale(1.2);
+}
+
+.container__right__login__sns__github {
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.container__right__login__sns__github:hover {
+  transform: scale(1.2);
+}
