@@ -12,6 +12,13 @@ import {
   getHomePageList,
 } from './pages/fanLog.js';
 
+import {
+  save_list,
+  update_list,
+  onEditing_list,
+  delete_list,
+} from "./pages/mypage.js";
+
 // url 바뀌면 handleLocation 실행하여 화면 변경
 window.addEventListener('hashchange', handleLocation);
 
@@ -60,3 +67,8 @@ window.delete_comment = delete_comment;
 window.profileModal = profileModal;
 window.getCommentList = getCommentList;
 window.getHomePageList = getHomePageList;
+window.goToMyPage = goToMyPage;
+window.save_list = save_list;
+window.update_list =update_list;
+window.onEditing_list = onEditing_list;
+window.delete_list = delete_list;
