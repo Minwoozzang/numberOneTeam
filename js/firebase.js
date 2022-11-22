@@ -8,7 +8,8 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-s
 const firebaseConfig = {
   apiKey: "AIzaSyCMoLsI3xRU9iQNp-wha7u8-0hOJOU9AT8",
   authDomain: "crud-prac-70017.firebaseapp.com",
-  databaseURL: "https://crud-prac-70017-default-rtdb.asia-southeast1.firebasedatabase.app",
+  databaseURL:
+    "https://crud-prac-70017-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "crud-prac-70017",
   storageBucket: "crud-prac-70017.appspot.com",
   messagingSenderId: "658511754696",

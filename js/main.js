@@ -8,6 +8,8 @@ import {
   update_comment,
   onEditing,
   delete_comment,
+  getCommentList,
+  getHomePageList,
 } from "./pages/fanLog.js";
 
 // url 바뀌면 handleLocation 실행하여 화면 변경
@@ -47,3 +49,5 @@ window.save_comment = save_comment;
 window.update_comment = update_comment;
 window.onEditing = onEditing;
 window.delete_comment = delete_comment;
+window.getCommentList = getCommentList;
+window.getHomePageList = getHomePageList;
