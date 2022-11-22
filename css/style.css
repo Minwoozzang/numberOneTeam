@@ -1,12 +1,16 @@
 * {
-  font-family: "Noto Serif KR", serif;
+  font-family: 'Noto Serif KR', serif;
 }
 
 body {
   width: 80vw;
   height: 100vh;
-  
+
   margin: auto;
+}
+
+button {
+  cursor: pointer;
 }
 
 /* .main-nav {
@@ -336,12 +340,62 @@ body {
   text-align: center;
 } */
 
+/* 프로필 모달창 */
+
+#profilePage {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  /* backdrop-filter: blur(1.5px); */
+  /* -webkit-backdrop-filter: blur(1.5px); */
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#profileWrapper {
+  background: rgba(223, 223, 223, 0.9);
+  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+  backdrop-filter: blur(13.5px);
+  /* -webkit-backdrop-filter: blur(13.5px); */
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 360px;
+  height: 400px;
+  position: relative;
+  top: -220px;
+  right: -820px;
+  padding: 10px;
+
+  /* width: auto; */
+  /* border: 1px solid black; */
+  padding: 20px;
+  border-radius: 10px;
+}
+/*  */
+
 #profileImg {
   border-radius: 50%;
   margin-right: 10px;
+  object-fit: cover;
 }
 
-#profilePage {
+.profile-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* #profilePage {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -353,7 +407,7 @@ body {
   border: 1px solid black;
   padding: 20px;
   border-radius: 10px;
-}
+} */
 #profileWrapper > h2 {
   text-align: center;
 }
@@ -388,8 +442,6 @@ body {
   justify-content: space-between;
   margin-top: 10px;
 }
-
-
 
 #notFound {
   width: 100%;

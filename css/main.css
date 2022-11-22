@@ -1,232 +1,232 @@
 .main-nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
-  #logout, #profile {
-    margin-top: 4%;
-    background: none;
-    font-size: 2em;
-    cursor: pointer;
-  }
-  
-  #logout {
-    color: black;
-    border: 0;
-  
-    margin-right: 10%;
-  }
-  
-  #profile {
-    color: black;
-    border: 0;
-    margin-right: 4%;
-  }
-  
-  #logout:hover {
-    color: #0D99FF;
-  }
-  #profile:hover {
-    color: #0D99FF;
-  }
-  .main-knowledge-box {
-    width: 82%;
-    height: 30%;
-  
-    background-color: rgb(177, 174, 174);
-    border-radius: 2em;
-    margin: auto;
-  }
-  
-  
-  .main-knowledge-text__basebox {
-    width: 70%;
-    height: 100%;
-    
-    margin-top: 5%;
-    margin-left: 15%;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    color: aliceblue;
-    font-size: 3em;
-  }
-  
-  #left-right-page {
-    font-size: 2em;
-  
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
-    position: relative;
-  }
-  #left-page, #right-page {
-    border: 0;
-    background: none;
-    cursor: pointer;
-  }
-  #left-page:hover {
-    color: #0D99FF;
-  }
-  #right-page:hover{
-    color: #0D99FF;
-  }
-  
-  
-  
-  .form-write-comment {
-    width: 82%;
-  
-    margin-left: 9%;
-  }
-  
-  .form-write-comment .write-comment {
-    font-size: 1.5em;
-  }
-  
-  .form-write-nickname {
-    margin-top: 2%;
-    margin-bottom: 2%;
-  
-    display: flex;
-    align-items: center;
-  }
-  
-  .write-comment__textbox {
-    height: 15vh;
-  
-    margin-top: 2%;
-  
-    display: flex;
-    align-items: center;
-  }
-  
-  .write-comment__textbox input {
-    width: 88%;
-    height: 80%;
-    display: inline-block;
-  }
-  
-  .write-comment__btn {
-    width: 11%;
-    height: 80%;
-    background-color: black;
-    color: aliceblue;
-  
-    border: 0;
-    border-radius: 0.5em;
-  
-    font-size: 1.15em;
-    cursor: pointer;
-    margin-left: 1%;
-  }
-  
-  .write-comment__btn:hover {
-    background-color: #0D99FF;
-  }
-  
-  .list-comment {
-    width: 82%;
-  
-    margin-left: 9%;
-    margin-top: 5%;
-    margin-bottom: 2%;
-  
-    font-size: 1.5em;
-  }
-  
-  .mycards {
-    width: 82%;
-    margin: auto;
-  }
-  
-  .mycards > .card {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .newCmtInput {
-    width: 88%;
-    
-  }
-  
-  .card-body {
-    width: 100%;
-    background-color: #E3E3E3;
-    border-radius: 1em;
-  }
-  
-  .blockquote {
-    width: 94%;
-    margin: auto;
-    padding-top: 0.1%;
-  }
-  
-  .updateBtns {
-    display: flex;
-    justify-content: end;
-    gap: 1%;
-  }
-  
-  
-  .updateBtns button {
-    width: 6%;
-    height: 30px;
-  
-    background-color: black;
-    color: white;
-  
-    border: 0;
-    border-radius: 10%;
-    cursor: pointer;
-  
-    margin-right: 1%;
-    margin-bottom: 1%;
-  }
-  
-  
-  .newCmtInput {
-    width: 90%;
-  }
-  
-  .updateBtn {
-    width: 7%;
-    background-color: black;
-    color: white;
-    border: 0;
-    border-radius: 0.2em;
-    margin-left: 1%;
-    cursor: pointer;
-  }
-  .updateBtn:hover {
-    background-color: #0D99FF;
-  }
-  
-  .editBtn:hover {
-    background-color: #0D99FF;
-  }
-  
-  .deleteBtn:hover {
-    background-color: #0D99FF;
-  }
-  
-  .noDisplay {
-    display: none;
-  }
-  
-  .cmtImg {
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  .quote-footer {
-    color: #6c757d;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 24px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+#logout,
+#profile {
+  margin-top: 4%;
+  background: none;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+#logout {
+  color: black;
+  border: 0;
+
+  margin-right: 10%;
+}
+
+#profile {
+  color: black;
+  border: 0;
+  margin-right: 4%;
+}
+
+#logout:hover {
+  color: #0d99ff;
+}
+#profile:hover {
+  color: #0d99ff;
+}
+.main-knowledge-box {
+  width: 82%;
+  height: 30%;
+
+  background-color: rgb(177, 174, 174);
+  border-radius: 2em;
+  margin: auto;
+}
+
+.main-knowledge-text__basebox {
+  width: 70%;
+  height: 100%;
+
+  margin-top: 5%;
+  margin-left: 15%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: aliceblue;
+  font-size: 3em;
+}
+
+#left-right-page {
+  font-size: 2em;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+}
+#left-page,
+#right-page {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+#left-page:hover {
+  color: #0d99ff;
+}
+#right-page:hover {
+  color: #0d99ff;
+}
+
+.form-write-comment {
+  width: 82%;
+
+  margin-left: 9%;
+}
+
+.form-write-comment .write-comment {
+  font-size: 1.5em;
+}
+
+.form-write-nickname {
+  margin-top: 2%;
+  margin-bottom: 2%;
+
+  display: flex;
+  align-items: center;
+}
+
+.write-comment__textbox {
+  height: 15vh;
+
+  margin-top: 2%;
+
+  display: flex;
+  align-items: center;
+}
+
+.write-comment__textbox input {
+  width: 88%;
+  height: 80%;
+  display: inline-block;
+}
+
+.write-comment__btn {
+  width: 11%;
+  height: 80%;
+  background-color: black;
+  color: aliceblue;
+
+  border: 0;
+  border-radius: 0.5em;
+
+  font-size: 1.15em;
+  cursor: pointer;
+  margin-left: 1%;
+}
+
+.write-comment__btn:hover {
+  background-color: #0d99ff;
+}
+
+.list-comment {
+  width: 82%;
+
+  margin-left: 9%;
+  margin-top: 5%;
+  margin-bottom: 2%;
+
+  font-size: 1.5em;
+}
+
+.mycards {
+  width: 82%;
+  margin: auto;
+}
+
+.mycards > .card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.newCmtInput {
+  width: 88%;
+}
+
+.card-body {
+  width: 100%;
+  background-color: #e3e3e3;
+  border-radius: 1em;
+}
+
+.blockquote {
+  width: 94%;
+  margin: auto;
+  padding-top: 0.1%;
+}
+
+.updateBtns {
+  display: flex;
+  justify-content: end;
+  gap: 1%;
+}
+
+.updateBtns button {
+  width: 6%;
+  height: 30px;
+
+  background-color: black;
+  color: white;
+
+  border: 0;
+  border-radius: 10%;
+  cursor: pointer;
+
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+
+.newCmtInput {
+  width: 90%;
+}
+
+.updateBtn {
+  width: 7%;
+  background-color: black;
+  color: white;
+  border: 0;
+  border-radius: 0.2em;
+  margin-left: 1%;
+  cursor: pointer;
+}
+.updateBtn:hover {
+  background-color: #0d99ff;
+}
+
+.editBtn:hover {
+  background-color: #0d99ff;
+}
+
+.deleteBtn:hover {
+  background-color: #0d99ff;
+}
+
+.noDisplay {
+  display: none;
+}
+
+.cmtImg {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.quote-footer {
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
