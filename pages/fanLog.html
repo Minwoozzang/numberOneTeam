@@ -1,81 +1,62 @@
 <div>
   <div class="main-nav">
+
     <div class="main-btn">
       <button>main</button>
     </div>
     <div class="nav-profile">
       <span id="nick-name">닉네임 없음</span>
-      <!-- <button
-        type="button"
-        class="profile-btn"
-        id="img_btn"
-        onclick="profileModal()"
-      >      </button> -->
       <img
         class="profile-btn"
         src="../assets/blankProfile.webp"
         onclick="profileModal()"
       />
-
-      <!-- <button class="profile-btn" >
-        <img src="" alt="" />프로필 관리
-      </button> -->
-    </div>
-
-    <!-- <button onclick="goToProfile()" id="profile">
-      <i class="fa-solid fa-user"></i>
-    </button>
-    <button onclick="logout()" id="logout">
-      <i class="fa-solid fa-right-from-bracket"></i>
-    </button> -->
-  </div>
-
-  <div class="main-knowledge-box">
-    <div class="main-knowledge-text__basebox">
-      <span class="main-knowledge-text">
-        1조에서 가장 코딩 잘하는 사람 <br />
-        과연 누구일까요??
-      </span>
     </div>
   </div>
 
-  <div id="left-right-page">
-    <button onclick="beforePage()" type="button" id="left-page">
-      <i class="fa-solid fa-chevron-left"></i>
-    </button>
-    <button onclick="nextPage()" type="button" id="right-page">
-      <i class="fa-solid fa-chevron-right"></i>
-    </button>
+  <div class="main-button">
+    <button onclick="getHomePageList()">어제</button>
+    <button>오늘</button>
+    <button>내일</button>
   </div>
-
-  <div class="form-write-comment">
-    <div class="form-write-nickname">
-      <img
-        id="profileImg"
-        width="50em"
-        height="50em"
-        src="/assets/blankProfile.webp"
-      />
-      <span id="nickname">닉네임</span>
+  <div class="wrap">
+    <div class="main-knowledge-box">
+      <div class="main-knowledge-text__basebox">
+        <span class="main-knowledge-text">
+          1조에서 가장 코딩 잘하는 사람 <br />
+          과연 누구일까요??
+        </span>
+      </div>
     </div>
 
-    <div class="write-comment__textbox">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="댓글을 입력해주세요..."
-        id="comment"
-      />
-      <button
-        onclick="save_comment(event)"
-        type="button"
-        class="write-comment__btn"
-      >
-        댓글 등록
-      </button>
+    <div class="form-write-comment">
+      <div class="form-write-nickname">
+        <img
+          id="profileImg"
+          width="50em"
+          height="50em"
+          src="/assets/blankProfile.webp"
+        />
+        <span id="nickname">닉네임</span>
+      </div>
+
+      <div class="write-comment__textbox">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="댓글을 입력해주세요..."
+          id="comment"
+        />
+        <button
+          onclick="save_comment(event)"
+          type="button"
+          class="write-comment__btn"
+        >
+          댓글 등록
+        </button>
+      </div>
     </div>
   </div>
-
   <div class="list-comment">댓글 리스트</div>
 
   <div id="comment-list"></div>
@@ -110,3 +91,37 @@
     </form>
   </section>
 </div>
+
+    <div class="form-write-comment">
+      <div class="form-write-nickname">
+        <img
+          id="profileImg"
+          width="50em"
+          height="50em"
+          src="/assets/blankProfile.webp"
+        />
+        <span id="nickname">닉네임</span>
+      </div>
+
+      <div class="write-comment__textbox">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="댓글을 입력해주세요..."
+          id="comment"
+        />
+        <button
+          onclick="save_comment(event)"
+          type="button"
+          class="write-comment__btn"
+        >
+          댓글 등록
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="list-comment">댓글 리스트</div>
+
+  <div id="comment-list"></div>
+</div>
+
