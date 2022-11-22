@@ -1,12 +1,19 @@
 <div>
   <div class="main-nav">
-    <button onclick="goToProfile()" id="profile">
-      <i class="fa-solid fa-user"></i>
-    </button>
-    <button onclick="logout()" id="logout">
-      <i class="fa-solid fa-right-from-bracket"></i>
-    </button>
+
+    <div class="main-btn">
+      <button>main</button>
+    </div>
+    <div class="nav-profile">
+      <span id="nick-name">닉네임 없음</span>
+      <img
+        class="profile-btn"
+        src="../assets/blankProfile.webp"
+        onclick="profileModal()"
+      />
+    </div>
   </div>
+
   <div class="main-button">
     <button onclick="getHomePageList()">어제</button>
     <button>오늘</button>
@@ -21,15 +28,6 @@
         </span>
       </div>
     </div>
-    <!-- 
-  <div id="left-right-page">
-    <button onclick="beforePage()" type="button" id="left-page">
-      <i class="fa-solid fa-chevron-left"></i>
-    </button>
-    <button onclick="nextPage()" type="button" id="right-page">
-      <i class="fa-solid fa-chevron-right"></i>
-    </button>
-  </div> -->
 
     <div class="form-write-comment">
       <div class="form-write-nickname">
@@ -63,3 +61,35 @@
 
   <div id="comment-list"></div>
 </div>
+
+<!-- 프로필 모달창 -->
+
+<div id="profilePage">
+  <section id="profileWrapper">
+    <h2>프로필 관리</h2>
+    <form id="profileForm" onsubmit="changeProfile(event)">
+      <label id="imgLabel" for="imgInput">
+        <img id="profileView" src="/assets/blankProfile.webp" />
+        <input
+          onchange="onFileChange(event)"
+          id="imgInput"
+          type="file"
+          accept="images/*"
+        />
+      </label>
+      <div>
+        <input
+          id="profileNickname"
+          type="text"
+          placeholder="현재 닉네임"
+          value=""
+        />
+      </div>
+      <br />
+      <input id="profileBtn" type="submit" value="프로필 변경" />
+      <button claass="loginBtn" onclick="logout()">로그아웃</button>
+    </form>
+  </section>
+</div>
+
+ 
