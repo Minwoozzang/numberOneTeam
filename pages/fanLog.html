@@ -16,18 +16,34 @@
   </div>
 
   <div class="main-button">
+    <!-- <button onclick="getQuestionList()">DAY 1</button>
+    <button onclick="getQuestionList()">DAY 2</button> -->
     <button onclick="getHomePageList(this)">어제</button>
     <button onclick="getHomePageList(this)">오늘</button>
     <button onclick="getHomePageList(this)">내일</button>
   </div>
+
+  <div id="question-list">
+    <div class="card questionCard">
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <!-- <p class="commentText" id="commentId">
+            1조에서 가장 코딩 잘하는 사람 과연 누구일까요??
+          </p> -->
+          <input type="text" id="commentId" value="" />
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
   <div class="wrap">
-    <div class="main-knowledge-box">
+    <!-- <div class="main-knowledge-box">
       <div class="main-knowledge-text__basebox">
         <span class="main-knowledge-text">
           1조에서 가장 코딩 잘하는 사람 <br />
           과연 누구일까요??
         </span>
-      </div>
+      </div> -->
     </div>
 
     <div class="form-write-comment">
