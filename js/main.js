@@ -1,7 +1,7 @@
 import { handleAuth, onToggle, logout } from './pages/auth.js';
 import { changeProfile, onFileChange, profileModal } from './pages/profile.js';
 import { socialLogin } from './pages/auth.js';
-import { handleLocation, goToProfile } from './router.js';
+import { handleLocation, goToProfile, goToMyPage } from './router.js';
 import { authService } from './firebase.js';
 import {
   save_comment,
@@ -10,6 +10,7 @@ import {
   delete_comment,
   getCommentList,
   getHomePageList,
+  getQuestionList,
 } from './pages/fanLog.js';
 
 import {
@@ -17,7 +18,7 @@ import {
   update_list,
   onEditing_list,
   delete_list,
-} from "./pages/mypage.js";
+} from './pages/mypage.js';
 
 // url 바뀌면 handleLocation 실행하여 화면 변경
 window.addEventListener('hashchange', handleLocation);
@@ -69,6 +70,7 @@ window.getCommentList = getCommentList;
 window.getHomePageList = getHomePageList;
 window.goToMyPage = goToMyPage;
 window.save_list = save_list;
-window.update_list =update_list;
+window.update_list = update_list;
 window.onEditing_list = onEditing_list;
 window.delete_list = delete_list;
+window.getQuestionList = getQuestionList;

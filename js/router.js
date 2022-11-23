@@ -5,10 +5,10 @@ const routes = {
   '/': '/pages/auth.html',
   fanLog: '/pages/fanLog.html',
   profile: '/pages/profile.html',
-  mypage: "/pages/mypage.html",
+  mypage: '/pages/mypage.html',
 };
 import { getCommentList } from './pages/fanLog.js';
-import { getMyList } from "./pages/mypage.js";
+import { getMyList } from './pages/mypage.js';
 
 export const handleLocation = async () => {
   let path = window.location.hash.replace('#', '');
@@ -35,19 +35,19 @@ export const handleLocation = async () => {
     document.getElementById('profileImg').src =
       authService.currentUser.photoURL ?? '../assets/blankProfile.webp';
 
-    getCommentList();
+    getCommentList('today');
   }
 
-  if (path === "mypage") {
-    document.querySelector(".nickname").textContent =
-      authService.currentUser.displayName ?? "닉네임 없음";
-  
-    document.querySelector(".profileImg").src =
-      authService.currentUser.photoURL ?? "../assets/blankProfile.webp";
-  
+  if (path === 'mypage') {
+    document.querySelector('.nickname').textContent =
+      authService.currentUser.displayName ?? '닉네임 없음';
+
+    document.querySelector('.profileImg').src =
+      authService.currentUser.photoURL ?? '../assets/blankProfile.webp';
+
     getMyList();
-  };
-  
+  }
+
   // 프로필 변경 경로 이동 - 비활성화
 
   // if (path === "profile") {
@@ -64,5 +64,5 @@ export const goToProfile = () => {
 };
 
 export const goToMyPage = () => {
-  window.location.hash = "#mypage";
+  window.location.hash = '#mypage';
 };
