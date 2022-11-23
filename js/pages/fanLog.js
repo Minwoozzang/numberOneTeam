@@ -13,13 +13,18 @@ import {
 import { dbService, authService } from "../firebase.js";
 
 let selectedDate = "";
+let comments = "";
 
 export const save_comment = async (event) => {
   event.preventDefault();
+  console.log(selectedDate);
   const comment = document.getElementById("comment");
+  if (selectedDate === "yesterday") comments = "comment1";
+  else if (selectedDate === "today") comments = "comment2";
+  else comments = "comment3";
   const { uid, photoURL, displayName } = authService.currentUser;
   try {
-    await addDoc(collection(dbService, "comments"), {
+    await addDoc(collection(dbService, comments), {
       text: comment.value,
       createdAt: new Date(),
       creatorId: uid,
@@ -61,7 +66,7 @@ export const update_comment = async (event) => {
   commentInputP.classList.remove("d-flex");
   commentInputP.classList.add("noDisplay");
 
-  const commentRef = doc(dbService, "comments", id);
+  const commentRef = doc(dbService, comments, id);
   try {
     await updateDoc(commentRef, { text: newComment });
     getCommentList(selectedDate);
@@ -76,7 +81,7 @@ export const delete_comment = async (event) => {
   const ok = window.confirm("해당 응원글을 정말 삭제하시겠습니까?");
   if (ok) {
     try {
-      await deleteDoc(doc(dbService, "comments", id));
+      await deleteDoc(doc(dbService, comments, id));
       getCommentList(selectedDate);
     } catch (error) {
       alert(error);
@@ -86,22 +91,14 @@ export const delete_comment = async (event) => {
 
 export const getCommentList = async (time) => {
   let cmtObjList = [];
-
-  const today = new Date(new Date()).toDateString("yyyy-mm-dd");
-  console.log(today);
-  const yesterday = new Date(
-    new Date().setDate(new Date().getDate() - 1)
-  ).toDateString("yyyy-mm-dd");
-
-  const tomorrow = new Date(
-    new Date().setDate(new Date().getDate() + 1)
-  ).toDateString("yyyy-mm-dd");
+  if (selectedDate === "yesterday") comments = "comment1";
+  else if (selectedDate === "today") comments = "comment2";
+  else comments = "comment3";
 
   if (time === "yesterday") {
+    console.log(comments);
     const q = query(
-      collection(dbService, "comments"),
-      where("createdAt", "<", new Date(today)),
-      where("createdAt", ">=", new Date(yesterday)), //범위 설정~!~!~!
+      collection(dbService, comments),
       orderBy("createdAt", "desc")
     );
     const querySnapshot = await getDocs(q);
@@ -115,10 +112,9 @@ export const getCommentList = async (time) => {
       }
     });
   } else if (time === "today") {
+    console.log(comments);
     const q = query(
-      collection(dbService, "comments"),
-      where("createdAt", "<", new Date(tomorrow)),
-      where("createdAt", ">=", new Date(today)),
+      collection(dbService, comments),
       orderBy("createdAt", "desc")
     );
     const querySnapshot = await getDocs(q);
@@ -131,8 +127,7 @@ export const getCommentList = async (time) => {
     });
   } else if (time === "tomorrow") {
     const q = query(
-      collection(dbService, "comments"),
-      where("createdAt", ">=", new Date(tomorrow)),
+      collection(dbService, comments),
       orderBy("createdAt", "desc")
     );
     const querySnapshot = await getDocs(q);
@@ -232,4 +227,5 @@ export const getHomePageList = (target) => {
   else if (target.textContent === "내일") selectedDate = "tomorrow";
   else selectedDate = "yesterday";
   getCommentList(selectedDate);
+  console.log(selectedDate);
 };
