@@ -1,0 +1,26 @@
+.mypage-nav {
+    width: 80vw;
+    margin: auto;
+}
+
+#mainPageBtn {
+    background-color: black;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+#mainPageBtn:hover {
+    background-color:  #0D99FF;
+}
+
+.mypage-text {
+    width: 80vw;  
+
+    margin-top: 4%;
+    margin-bottom: 3%;
+    margin-left: 9%;
+}
+
+.mypage-list{
+    overflow: scroll;
+}
