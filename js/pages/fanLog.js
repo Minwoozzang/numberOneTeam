@@ -1,5 +1,6 @@
 import {
   doc,
+  setDoc,
   addDoc,
   updateDoc,
   deleteDoc,
@@ -7,8 +8,11 @@ import {
   orderBy,
   query,
   getDocs,
+  where,
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
 import { dbService, authService } from "../firebase.js";
+
+let selectedDate = "";
 
 export const save_comment = async (event) => {
   event.preventDefault();
@@ -17,16 +21,15 @@ export const save_comment = async (event) => {
   try {
     await addDoc(collection(dbService, "comments"), {
       text: comment.value,
-      createdAt: Date.now(),
+      createdAt: new Date(),
       creatorId: uid,
       profileImg: photoURL,
       nickname: displayName,
     });
     comment.value = "";
-    getCommentList();
+    getCommentList(selectedDate);
   } catch (error) {
     alert(error);
-    console.log("error in addDoc:", error);
   }
 };
 
@@ -61,7 +64,7 @@ export const update_comment = async (event) => {
   const commentRef = doc(dbService, "comments", id);
   try {
     await updateDoc(commentRef, { text: newComment });
-    getCommentList();
+    getCommentList(selectedDate);
   } catch (error) {
     alert(error);
   }
@@ -74,49 +77,73 @@ export const delete_comment = async (event) => {
   if (ok) {
     try {
       await deleteDoc(doc(dbService, "comments", id));
-      getCommentList();
+      getCommentList(selectedDate);
     } catch (error) {
       alert(error);
     }
   }
 };
 
-/*
-어제 - 지금 시점에서 어제 생성된 방명록 - 타임스탬프
-1+1 도 바귀어야 됨
- */
-// 오늘 - 오늘 생성된 방명록
-// 내일 - 생성? 방명록은 없이 1+1 부분만 바뀌게
-
-// time = "yesterday", "today"
-// getCommentList("yesterday");
-// getCommentList("today");
-// firebase where clause
-export const getCommentList = async () => {
+export const getCommentList = async (time) => {
   let cmtObjList = [];
-  // const startOfDay = new Date();
 
-  // if (time === "yesterday") {
-  //   // createdAt <= startOfDay: 어제
-  //   const q = query(
-  //     collection(dbService, "comments").where("createdAt", "<=", startOfDay),
-  //     orderBy("createdAt", "desc")
-  //   );
-  // } else if (time === "today") {
-  //   // createdAt <= startOfDay: 어제
-  const q = query(
-    collection(dbService, "comments"),
-    orderBy("createdAt", "desc")
-  );
+  const today = new Date(new Date()).toDateString("yyyy-mm-dd");
+  console.log(today);
+  const yesterday = new Date(
+    new Date().setDate(new Date().getDate() - 1)
+  ).toDateString("yyyy-mm-dd");
 
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    const commentObj = {
-      id: doc.id,
-      ...doc.data(),
-    };
-    cmtObjList.push(commentObj);
-  });
+  const tomorrow = new Date(
+    new Date().setDate(new Date().getDate() + 1)
+  ).toDateString("yyyy-mm-dd");
+
+  if (time === "yesterday") {
+    const q = query(
+      collection(dbService, "comments"),
+      where("createdAt", "<", new Date(today)),
+      where("createdAt", ">=", new Date(yesterday)), //범위 설정~!~!~!
+      orderBy("createdAt", "desc")
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      if (typeof doc.data().createdAt !== "string") {
+        const commentObj = {
+          id: doc.id,
+          ...doc.data(),
+        };
+        cmtObjList.push(commentObj);
+      }
+    });
+  } else if (time === "today") {
+    const q = query(
+      collection(dbService, "comments"),
+      where("createdAt", "<", new Date(tomorrow)),
+      where("createdAt", ">=", new Date(today)),
+      orderBy("createdAt", "desc")
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const commentObj = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      cmtObjList.push(commentObj);
+    });
+  } else if (time === "tomorrow") {
+    const q = query(
+      collection(dbService, "comments"),
+      where("createdAt", ">=", new Date(tomorrow)),
+      orderBy("createdAt", "desc")
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const commentObj = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      cmtObjList.push(commentObj);
+    });
+  }
   const commnetList = document.getElementById("comment-list");
   const currentUid = authService.currentUser.uid;
   commnetList.innerHTML = "";
@@ -133,9 +160,9 @@ export const getCommentList = async () => {
                     cmtObj.profileImg
                   }" alt="profileImg" /><span>${
       cmtObj.nickname ?? "닉네임 없음"
-    }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
-      .toString()
-      .slice(0, 25)}</div></footer>
+    }</span></div><div class="cmtAt">${cmtObj.createdAt
+      .toDate()
+      .toLocaleString()}</div></footer>
               </div>
               <div class="${isOwner ? "updateBtns" : "noDisplay"}">
                    <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
@@ -152,7 +179,7 @@ export const getCommentList = async () => {
   });
 };
 
-export const getHomePageList = () => {
+export const getHomePageList = (target) => {
   const temp_html = ` <div class="main-knowledge-box">
   <div class="main-knowledge-text__basebox">
     <span class="main-knowledge-text">
@@ -201,5 +228,8 @@ export const getHomePageList = () => {
   const wrap = document.querySelector(".wrap");
   wrap.innerHTML = "";
   wrap.innerHTML = temp_html;
-  getCommentList();
+  if (target.textContent === "오늘") selectedDate = "today";
+  else if (target.textContent === "내일") selectedDate = "tomorrow";
+  else selectedDate = "yesterday";
+  getCommentList(selectedDate);
 };
