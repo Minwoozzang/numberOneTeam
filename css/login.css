@@ -1,8 +1,7 @@
 * {
   box-sizing: border-box;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
 }
-
 
 body {
   background-color: white;
@@ -18,7 +17,6 @@ body {
 }
 
 .container__left {
-
   width: 170%;
   height: 100%;
 }
@@ -37,22 +35,19 @@ body {
   flex-direction: column;
 }
 
-#authPage h1 {
+#authTitle {
   font-size: 40px;
 }
 
-.container__right__login {
-  width: 500px;
-  height: 500px;
+.input_box {
+  width: 100%;
+  margin-bottom: 24px;
 }
 
-.container__right__login-form__account {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 30px;
-  margin-bottom: 40px;
+.input_box label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: bold;
 }
 
 .container__right__login-form__account__email {
@@ -80,11 +75,6 @@ body {
 
 .container__right__login-form__account__password:focus {
   outline: none;
-}
-
-.container__right__login-form__insert {
-  display: flex;
-  justify-content: space-around;
 }
 
 #authBtnSection {
@@ -135,10 +125,6 @@ body {
 .container__right__login__sns__button {
   border: none;
   background-color: transparent;
-}
-
-.container__right__login__sns {
-  text-align: center;
 }
 
 .container__right__login__sns__google {
