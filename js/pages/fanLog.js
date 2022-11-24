@@ -9,20 +9,20 @@ import {
   query,
   getDocs,
   where,
-} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
-import { dbService, authService } from "../firebase.js";
+} from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js';
+import { dbService, authService } from '../firebase.js';
 
-let selectedDate = "today";
-let comments = "";
+let selectedDate = 'today';
+let comments = '';
 
 export const save_comment = async (event) => {
   event.preventDefault();
   debugger;
   console.log(selectedDate);
-  const comment = document.getElementById("comment");
-  if (selectedDate === "yesterday") comments = "comment1";
-  else if (selectedDate === "today") comments = "comment2";
-  else comments = "comment3";
+  const comment = document.getElementById('comment');
+  if (selectedDate === 'yesterday') comments = 'comment1';
+  else if (selectedDate === 'today') comments = 'comment2';
+  else comments = 'comment3';
   const { uid, photoURL, displayName } = authService.currentUser;
   try {
     await addDoc(collection(dbService, comments), {
@@ -34,7 +34,7 @@ export const save_comment = async (event) => {
       plusCounter: 0,
       minusCounter: 0,
     });
-    comment.value = "";
+    comment.value = '';
     getCommentList(selectedDate);
   } catch (error) {
     alert(error);
@@ -44,16 +44,16 @@ export const save_comment = async (event) => {
 export const onEditing = (event) => {
   // 수정버튼 클릭
   event.preventDefault();
-  const udBtns = document.querySelectorAll(".editBtn, .deleteBtn");
-  udBtns.forEach((udBtn) => (udBtn.disabled = "true"));
+  const udBtns = document.querySelectorAll('.editBtn, .deleteBtn');
+  udBtns.forEach((udBtn) => (udBtn.disabled = 'true'));
 
   const cardBody = event.target.parentNode.parentNode;
   const commentText = cardBody.children[0].children[0];
   const commentInputP = cardBody.children[0].children[1];
 
-  commentText.classList.add("noDisplay");
-  commentInputP.classList.add("d-flex");
-  commentInputP.classList.remove("noDisplay");
+  commentText.classList.add('noDisplay');
+  commentInputP.classList.add('d-flex');
+  commentInputP.classList.remove('noDisplay');
   commentInputP.children[0].focus();
 };
 
@@ -64,10 +64,10 @@ export const update_comment = async (event) => {
 
   const parentNode = event.target.parentNode.parentNode;
   const commentText = parentNode.children[0];
-  commentText.classList.remove("noDisplay");
+  commentText.classList.remove('noDisplay');
   const commentInputP = parentNode.children[1];
-  commentInputP.classList.remove("d-flex");
-  commentInputP.classList.add("noDisplay");
+  commentInputP.classList.remove('d-flex');
+  commentInputP.classList.add('noDisplay');
 
   const commentRef = doc(dbService, comments, id);
   try {
@@ -81,7 +81,7 @@ export const update_comment = async (event) => {
 export const delete_comment = async (event) => {
   event.preventDefault();
   const id = event.target.name;
-  const ok = window.confirm("삭제하시겠습니까?");
+  const ok = window.confirm('삭제하시겠습니까?');
   if (ok) {
     try {
       await deleteDoc(doc(dbService, comments, id));
@@ -142,19 +142,19 @@ export const commentHate = async (event) => {
 
 export const getCommentList = async (time) => {
   let cmtObjList = [];
-  if (selectedDate === "yesterday") comments = "comment1";
-  else if (selectedDate === "today") comments = "comment2";
-  else comments = "comment3";
+  if (selectedDate === 'yesterday') comments = 'comment1';
+  else if (selectedDate === 'today') comments = 'comment2';
+  else comments = 'comment3';
 
-  if (time === "yesterday") {
+  if (time === 'yesterday') {
     console.log(comments);
     const q = query(
       collection(dbService, comments),
-      orderBy("createdAt", "desc")
+      orderBy('createdAt', 'desc')
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      if (typeof doc.data().createdAt !== "string") {
+      if (typeof doc.data().createdAt !== 'string') {
         const commentObj = {
           id: doc.id,
           ...doc.data(),
@@ -162,11 +162,11 @@ export const getCommentList = async (time) => {
         cmtObjList.push(commentObj);
       }
     });
-  } else if (time === "today") {
+  } else if (time === 'today') {
     console.log(comments);
     const q = query(
       collection(dbService, comments),
-      orderBy("createdAt", "desc")
+      orderBy('createdAt', 'desc')
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -176,10 +176,10 @@ export const getCommentList = async (time) => {
       };
       cmtObjList.push(commentObj);
     });
-  } else if (time === "tomorrow") {
+  } else if (time === 'tomorrow') {
     const q = query(
       collection(dbService, comments),
-      orderBy("createdAt", "desc")
+      orderBy('createdAt', 'desc')
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -190,9 +190,9 @@ export const getCommentList = async (time) => {
       cmtObjList.push(commentObj);
     });
   }
-  const commnetList = document.getElementById("comment-list");
+  const commnetList = document.getElementById('comment-list');
   const currentUid = authService.currentUser.uid;
-  commnetList.innerHTML = "";
+  commnetList.innerHTML = '';
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
     const temp_html = `<div class="card commentCard">
@@ -205,11 +205,11 @@ export const getCommentList = async (time) => {
                   <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${
                     cmtObj.profileImg
                   }" alt="profileImg" /><span>${
-      cmtObj.nickname ?? "닉네임 없음"
+      cmtObj.nickname ?? '닉네임 없음'
     }</span></div><div class="cmtAt">${cmtObj.createdAt
       .toDate()
       .toLocaleString()}</div></footer>
-      <div class="${isOwner ? "noDisplay" : "show"}">
+      <div class="${isOwner ? 'noDisplay' : 'show'}">
   <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
   <button onclick="commentLike(event)" id="${
     cmtObj.id
@@ -219,7 +219,7 @@ export const getCommentList = async (time) => {
 </div>
 
               </div>
-              <div class="${isOwner ? "updateBtns" : "noDisplay"}">
+              <div class="${isOwner ? 'updateBtns' : 'noDisplay'}">
                    <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
                 <button name="${
                   cmtObj.id
@@ -227,8 +227,8 @@ export const getCommentList = async (time) => {
               </div>            
             </div>
      </div>`;
-    const div = document.createElement("div");
-    div.classList.add("mycards");
+    const div = document.createElement('div');
+    div.classList.add('mycards');
     div.innerHTML = temp_html;
     commnetList.appendChild(div);
   });
@@ -281,12 +281,12 @@ export const getHomePageList = (target) => {
     </button>
   </div>
 </div>`;
-  const wrap = document.querySelector(".wrap");
-  wrap.innerHTML = "";
+  const wrap = document.querySelector('.wrap');
+  wrap.innerHTML = '';
   wrap.innerHTML = temp_html;
-  if (target.textContent === "오늘") selectedDate = "today";
-  else if (target.textContent === "내일") selectedDate = "tomorrow";
-  else selectedDate = "yesterday";
+  if (target.textContent === '오늘') selectedDate = 'today';
+  else if (target.textContent === '내일') selectedDate = 'tomorrow';
+  else selectedDate = 'yesterday';
   getCommentList(selectedDate);
   console.log(selectedDate);
 };
