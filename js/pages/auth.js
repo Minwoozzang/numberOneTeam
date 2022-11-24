@@ -71,7 +71,9 @@ export const handleAuth = (event) => {
     createUserWithEmailAndPassword(authService, emailVal, pwVal)
       .then((userCredential) => {
         // Signed in
-        console.log('회원가입 성공!');
+        alert('회원가입 성공!');
+        window.location.hash = '/';
+        window.location.reload();
         // const user = userCredential.user;
       })
       .catch((error) => {

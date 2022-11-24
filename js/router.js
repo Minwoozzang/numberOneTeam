@@ -27,15 +27,18 @@ export const handleLocation = async () => {
   document.getElementById('root').innerHTML = html;
 
   // 특정 화면 렌더링 되자마자 DOM 조작 처리
-  if (path === 'fanLog') {
+  if (path === "fanLog") {
     // 로그인한 회원의 프로필사진과 닉네임을 화면에 표시해줌.
-    document.getElementById('nickname').textContent =
+    document.querySelector("#nickname").textContent =
       authService.currentUser.displayName ?? '닉네임 없음';
 
-    document.getElementById('profileImg').src =
+    document.querySelector(".profileImg").src =
       authService.currentUser.photoURL ?? '../assets/blankProfile.webp';
 
-    getCommentList('today');
+    document.querySelector(".profileImage").src =
+      authService.currentUser.photoURL ?? '../assets/blankProfile.webp';
+      
+    getCommentList("today");
   }
 
   if (path === 'mypage') {
@@ -45,7 +48,7 @@ export const handleLocation = async () => {
     document.querySelector('.profileImg').src =
       authService.currentUser.photoURL ?? '../assets/blankProfile.webp';
 
-    getMyList();
+    getMyList("today");
   }
 
   // 프로필 변경 경로 이동 - 비활성화

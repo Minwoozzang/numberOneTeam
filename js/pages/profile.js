@@ -30,6 +30,7 @@ export const changeProfile = async (event) => {
     .then(() => {
       alert('프로필 수정 완료');
       window.location.hash = '#fanLog';
+      window.location.reload();
       //
       const profilePage = document.querySelector('#profilePage');
       profilePage.style.display = 'none';

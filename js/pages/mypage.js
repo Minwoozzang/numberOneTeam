@@ -8,42 +8,48 @@ import {
   query,
   getDocs,
   where,
-} from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js';
-import { dbService, authService } from '../firebase.js';
+} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
+import { dbService, authService } from "../firebase.js";
+
+let selectedDate = "today";
+let comments = "";
 
 export const save_list = async (event) => {
   event.preventDefault();
-  const comment = document.getElementById('comment');
+  console.log(selectedDate);
+  const comment = document.getElementById("comment");
+  if (selectedDate === "yesterday") comments = "comment1";
+  else if (selectedDate === "today") comments = "comment2";
+  else comments = "comment3";
   const { uid, photoURL, displayName } = authService.currentUser;
   try {
-    await addDoc(collection(dbService, 'comments'), {
+    await addDoc(collection(dbService, comments), {
       text: comment.value,
-      createdAt: Date.now(),
+      createdAt: new Date(),
       creatorId: uid,
       profileImg: photoURL,
       nickname: displayName,
     });
-    comment.value = '';
-    getMyList();
+    comment.value = "";
+    getMyList(selectedDate);
   } catch (error) {
     alert(error);
-    console.log('error in addDoc:', error);
   }
 };
 
 export const onEditing_list = (event) => {
   // 수정버튼 클릭
   event.preventDefault();
-  const udBtns = document.querySelectorAll('.editBtn, .deleteBtn');
-  udBtns.forEach((udBtn) => (udBtn.disabled = 'true'));
+  const udBtns = document.querySelectorAll(".editBtn, .deleteBtn");
+  udBtns.forEach((udBtn) => (udBtn.disabled = "true"));
 
   const cardBody = event.target.parentNode.parentNode;
   const commentText = cardBody.children[0].children[0];
   const commentInputP = cardBody.children[0].children[1];
 
-  commentText.classList.add('noDisplay');
-  commentInputP.classList.add('d-flex');
-  commentInputP.classList.remove('noDisplay');
+  commentText.classList.add("noDisplay");
+  commentInputP.classList.add("d-flex");
+  commentInputP.classList.remove("noDisplay");
   commentInputP.children[0].focus();
 };
 
@@ -54,12 +60,12 @@ export const update_list = async (event) => {
 
   const parentNode = event.target.parentNode.parentNode;
   const commentText = parentNode.children[0];
-  commentText.classList.remove('noDisplay');
+  commentText.classList.remove("noDisplay");
   const commentInputP = parentNode.children[1];
-  commentInputP.classList.remove('d-flex');
-  commentInputP.classList.add('noDisplay');
+  commentInputP.classList.remove("d-flex");
+  commentInputP.classList.add("noDisplay");
 
-  const commentRef = doc(dbService, 'comments', id);
+  const commentRef = doc(dbService, "comments", id);
   try {
     await updateDoc(commentRef, { text: newComment });
     getMyList();
@@ -71,10 +77,10 @@ export const update_list = async (event) => {
 export const delete_list = async (event) => {
   event.preventDefault();
   const id = event.target.name;
-  const ok = window.confirm('삭제하시겠습니까?');
+  const ok = window.confirm("삭제하시겠습니까?");
   if (ok) {
     try {
-      await deleteDoc(doc(dbService, 'comments', id));
+      await deleteDoc(doc(dbService, "comments", id));
       getMyList();
     } catch (error) {
       alert(error);
@@ -82,14 +88,17 @@ export const delete_list = async (event) => {
   }
 };
 
+
 export const getMyList = async () => {
   let cmtObjList = [];
   const currentUid = authService.currentUser.uid;
+  for(let i = 1; i < 4; i++){
   const q = query(
-    collection(dbService, 'comments'),
+    collection(dbService, `comment${i}`),
     where('creatorId', '==', currentUid),
     orderBy('createdAt', 'desc')
   );
+
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     const commentObj = {
@@ -98,6 +107,8 @@ export const getMyList = async () => {
     };
     cmtObjList.push(commentObj);
   });
+}
+
   const commnetList = document.getElementById('mypage-list');
   commnetList.innerHTML = '';
   cmtObjList.forEach((cmtObj) => {
@@ -111,9 +122,8 @@ export const getMyList = async () => {
                     cmtObj.profileImg
                   }" alt="profileImg" /><span>${
       cmtObj.nickname ?? '닉네임 없음'
-    }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
-      .toString()
-      .slice(0, 25)}</div></footer>
+    }</span></div><div class="cmtAt">
+    ${cmtObj.createdAt.toDate().toLocaleString()}</div></footer>
               </div>
               <div class="${isOwner ? 'updateBtns' : 'noDisplay'}">
                    
