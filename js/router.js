@@ -31,14 +31,14 @@ export const handleLocation = async () => {
     // 로그인한 회원의 프로필사진과 닉네임을 화면에 표시해줌.
 
     document.querySelector("#nickname").textContent =
-      authService.currentUser.displayName ?? '닉네임 없음';
+      authService.currentUser.displayName ?? "닉네임 없음";
 
     document.querySelector(".profileImg").src =
-      authService.currentUser.photoURL ?? '../assets/blankProfile.webp';
+      authService.currentUser.photoURL ?? "../assets/blankProfile.webp";
 
     document.querySelector(".profileImage").src =
-      authService.currentUser.photoURL ?? '../assets/blankProfile.webp';
-      
+      authService.currentUser.photoURL ?? "../assets/blankProfile.webp";
+
     getCommentList("today");
   }
 

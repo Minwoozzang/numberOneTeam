@@ -8,19 +8,21 @@
     <div id="authWrapper">
       <h1 id="authTitle">로그인</h1>
       <form onsubmit="handleAuth(event)">
-        <div class="authInput">
+        <div class="input_box">
+          <label for="email">이메일</label>
           <input
             id="email"
             type="email"
-            placeholder="이메일"
+            placeholder="ex) test@naver.com"
             class="container__right__login-form__account__email"
           />
         </div>
-        <div class="authInput">
+        <div class="input_box">
+          <label for="pw">비밀번호</label>
           <input
             id="pw"
             type="password"
-            placeholder="비밀번호"
+            placeholder="영문 특수문자 숫자를 포함해주세요."
             class="container__right__login-form__account__password"
           />
         </div>
@@ -72,4 +74,3 @@
     </div>
   </div>
 </div>
-
