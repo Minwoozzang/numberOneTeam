@@ -10,6 +10,8 @@ import {
   delete_comment,
   getCommentList,
   getHomePageList,
+  commentLike,
+  commentHate,
 } from "./pages/fanLog.js";
 
 import {
@@ -68,6 +70,8 @@ window.profileModal = profileModal;
 window.getCommentList = getCommentList;
 window.getHomePageList = getHomePageList;
 window.save_list = save_list;
+window.commentLike = commentLike;
+window.commentHate = commentHate;
 // window.update_list = update_list;
 // window.onEditing_list = onEditing_list;
 // window.delete_list = delete_list;

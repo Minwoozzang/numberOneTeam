@@ -17,6 +17,7 @@ let comments = "";
 
 export const save_comment = async (event) => {
   event.preventDefault();
+  debugger;
   console.log(selectedDate);
   const comment = document.getElementById("comment");
   if (selectedDate === "yesterday") comments = "comment1";
@@ -30,6 +31,8 @@ export const save_comment = async (event) => {
       creatorId: uid,
       profileImg: photoURL,
       nickname: displayName,
+      plusCounter: 0,
+      minusCounter: 0,
     });
     comment.value = "";
     getCommentList(selectedDate);
@@ -89,6 +92,54 @@ export const delete_comment = async (event) => {
   }
 };
 
+export const commentLike = async (event) => {
+  event.preventDefault();
+  // <------------ 나중에 disabled 할수도 있어서 남겨둔 거니 지우지 마세요!! -------------->
+  // const udBtns = document.querySelector(".button1");
+  // console.log(udBtns);
+  // udBtns.disabled = "true";
+
+  // button 아이디를 불러온다.
+  // input 아이디를 불러온다, 변수를 준 이유는 버튼 아이디와 인풋 아이디를 조건문에서 같게 해서 1씩 증가시키기 위해서이다.
+  // like에 input1.value (지금은 문자 0), 을 넘버 0 으로 저장해준다.
+  // 버튼 아이디에 input1을 붙혀서 같게 해주고, 인풋아이디랑 같다면 like 하나씩 증가하게 해준다.
+  const id = event.target.id;
+  console.log(event.target);
+  const input1 = document.getElementById(`input1${id}`);
+  let like = Number(input1.value); // 0
+  if (input1.id === `input1${id}`) {
+    console.log(id);
+    like++;
+  }
+
+  const commentRef = doc(dbService, comments, id);
+  try {
+    await updateDoc(commentRef, { plusCounter: like });
+    getCommentList(selectedDate);
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const commentHate = async (event) => {
+  event.preventDefault();
+  const id = event.target.id;
+  const input2 = document.getElementById(`input2${id}`);
+  let like = Number(input2.value);
+  if (input2.id === `input2${id}`) {
+    console.log(id);
+    like++;
+  }
+
+  const commentRef = doc(dbService, comments, id);
+  try {
+    await updateDoc(commentRef, { minusCounter: like });
+    getCommentList(selectedDate);
+  } catch (error) {
+    alert(error);
+  }
+};
+
 export const getCommentList = async (time) => {
   let cmtObjList = [];
   if (selectedDate === "yesterday") comments = "comment1";
@@ -137,7 +188,7 @@ export const getCommentList = async (time) => {
         ...doc.data(),
       };
       cmtObjList.push(commentObj);
-    }); 
+    });
   }
   const commnetList = document.getElementById("comment-list");
   const currentUid = authService.currentUser.uid;
@@ -158,6 +209,15 @@ export const getCommentList = async (time) => {
     }</span></div><div class="cmtAt">${cmtObj.createdAt
       .toDate()
       .toLocaleString()}</div></footer>
+      <div class="${isOwner ? "noDisplay" : "show"}">
+  <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
+  <button onclick="commentLike(event)" id="${
+    cmtObj.id
+  }" class="button1">좋아요</button>
+  <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
+  <button onclick="commentHate(event)" id="${cmtObj.id}">싫어요</button>
+</div>
+
               </div>
               <div class="${isOwner ? "updateBtns" : "noDisplay"}">
                    <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
@@ -175,6 +235,7 @@ export const getCommentList = async (time) => {
 };
 
 export const getHomePageList = (target) => {
+  const { photoURL, displayName } = authService.currentUser;
   const temp_html = ` <div class="main-knowledge-box">
   <div class="main-knowledge-text__basebox">
     <span class="main-knowledge-text">
@@ -199,9 +260,9 @@ export const getHomePageList = (target) => {
       id="profileImg"
       width="50em"
       height="50em"
-      src="/assets/blankProfile.webp"
+      src="${photoURL}"
     />
-    <span id="nickname">닉네임</span>
+    <span id="nickname">${displayName}</span>
   </div>
 
   <div class="write-comment__textbox">
