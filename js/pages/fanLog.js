@@ -229,37 +229,3 @@ export const getHomePageList = (target) => {
   getCommentList(selectedDate);
   console.log(selectedDate);
 };
-
-
-  /* <div class="main-knowledge-box">
-<div class="main-knowledge-text__basebox">
-  <span class="main-knowledge-text">
-    1조에서 가장 코딩 잘하는 사람 <br />
-    과연 누구일까요??
-  </span>
-</div>
-</div> */
-
-
-
-// 게시글 가져오기
-
-// export const getQuestionList = async () => {
-//   let qstObjList = [];
-//   const q = query(collection(dbService, 'questions'));
-
-//   const querySnapshot = await getDocs(q);
-//   querySnapshot.forEach((doc) => {
-//     const questionObj = {
-//       content: doc.content,
-//       ...doc.data(),
-//     };
-//     qstObjList.push(questionObj);
-//   });
-
-//   const commentInput = document.getElementById('commentId');
-
-//   commentInput.value = qstObjList[0].content;
-//   console.log(qstObjList);
-//   console.log(qstObjList[0].content);
-// };
