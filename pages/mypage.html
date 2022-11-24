@@ -1,27 +1,17 @@
 <div class="mypage-nav">
-  <a href="#fanLog"><button id="mainPageBtn">메인페이지</button></a>
-  <button onclick="goToProfile()" id="profile">
-    <i class="fa-solid fa-user"></i>
-  </button>
-  <button onclick="logout()" id="logout">
-    <i class="fa-solid fa-right-from-bracket"></i>
-  </button>
-</div>
-<main>
-  <div class="mypage-text">내가 작성한 댓글 리스트</div>
-
-  <div class="form-write-comment">
-    <div class="form-write-nickname">
-      <img
-        id="profileImg"
-        class="profileImg"
-        width="50em"
-        height="50em"
-        src="/assets/blankProfile.webp"
-      />
-      <span id="nickname" class="nickname">닉네임</span>
-    </div>
+    <a href="#fanLog"><button id="mainPageBtn">메인페이지</button></a>
+    <button onclick="goToProfile()" id="profile"><i class="fa-solid fa-user"></i></button>
+    <button onclick="logout()" id="logout"><i class="fa-solid fa-right-from-bracket"></i></button>
   </div>
+<main>
+    <div class="mypage-text">내가 작성한 댓글 리스트</div>
 
-  <div id="mypage-list"></div>
+        <div class="form-write-comment">
+            <div class="form-write-nickname">
+                <img  class="profileImg" width="50em" height="50em" src="/assets/blankProfile.webp" />
+                <span  class="nickname">닉네임</span>
+            </div>
+        </div>
+
+    <div id="mypage-list"> </div>
 </main>
