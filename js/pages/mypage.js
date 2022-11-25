@@ -27,22 +27,6 @@ export const getMyList = async () => {
     });
   }
 
-  // let qstObjList = [];
-  // const q = query(collection(dbService, "comment4"));
-
-  // const querySnapshot = await getDocs(q);
-  // querySnapshot.forEach((doc) => {
-  //   const questionObj = {
-  //     content: doc.content,
-  //     ...doc.data(),
-  //   };
-  //   qstObjList.push(questionObj);
-  // });
-
-  // console.log(qstObjList);
-
-  // console.log(cmtObjList);
-
   const commnetList = document.getElementById("mypage-list");
   commnetList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {

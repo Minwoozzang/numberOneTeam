@@ -12,12 +12,10 @@ import { dbService, authService } from "../firebase.js";
 
 let selectedDate = "today";
 let comments = "";
-console.log(authService);
-// console.log(authService.currentUser.uid);
 
 export const save_comment = async (event) => {
   event.preventDefault();
-  console.log(selectedDate);
+
   const commentInput = document.getElementById("commentId");
   const commentIntro = document.getElementById("commentIntroduceId");
   const comment = document.getElementById("comment");
@@ -39,7 +37,6 @@ export const save_comment = async (event) => {
       hateButton: "",
       intro: commentIntro.value,
     });
-    console.log(uid);
     comment.value = "";
     getCommentList(selectedDate);
   } catch (error) {
@@ -102,16 +99,15 @@ export const commentLike = async (event) => {
   event.preventDefault();
   const id = event.target.id;
   const input1 = document.getElementById(`input1${id}`);
-  let like = Number(input1.value); // 0
+  let like = Number(input1.value);
   if (input1.id === `input1${id}`) {
     like++;
   }
-  // event.target.disabled = true;
+
   const uid = authService.currentUser.uid;
   const commentRef = doc(dbService, comments, id);
   try {
     await updateDoc(commentRef, { plusCounter: like });
-    // getCommentList(selectedDate);
   } catch (error) {
     alert(error);
   }
@@ -137,7 +133,6 @@ export const commentHate = async (event) => {
   const commentRef = doc(dbService, comments, id);
   try {
     await updateDoc(commentRef, { minusCounter: like });
-    // getCommentList(selectedDate);
   } catch (error) {
     alert(error);
   }
@@ -193,9 +188,9 @@ export const getCommentList = async (time) => {
     });
   } else if (time === "tomorrow") {
   }
-  const commnetList = document.getElementById("comment-list");
+  const commentList = document.getElementById("comment-list");
   const currentUid = authService.currentUser.uid;
-  commnetList.innerHTML = "";
+  commentList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
     const temp_html = `<div class="card commentCard">
@@ -234,52 +229,19 @@ export const getCommentList = async (time) => {
     const div = document.createElement("div");
     div.classList.add("mycards");
     div.innerHTML = temp_html;
-    commnetList.appendChild(div);
-
-    // const hate = document.querySelector(".hate");
-    // console.log(hate);
-    // if (cmtObj.likeButton === hate.id) {
-    //   hate.disabled = true;
-    // }
-
-    // forEach 문에서 querySelector을 돌리면 .hate의 버튼이 모두 불러와져야하는데 처음 껏만 반복해서 불러와지는 버그가 발생
-    // 원래대로라면 맞는 문법이고 제대로 실행되어야 한다.
-    // const hate = document.querySelector(".hate");
-    // console.log(hate);
-    // console.log(currentUid === cmtObj.creatorId);
-    // if((currentUid === cmtObj.creatorId)) {
-    //   console.log(document.querySelector(`button[name=${cmtObj.creatorId}]`));
-    //   document.getElementById(cmtObj.id).disabled = true;
-    // }
+    commentList.appendChild(div);
+    console.log(commentList);
   });
 
-  // el은 모든 버튼이고, el.name는 위에서 cmtObj.creatorId;즉 작성글의 아이디이다
-  // currentUid는 로그인한 아이디이다.
-  // 작성글의 아이디가 로그인 아이디와 같을 때 버튼을 비활성화 해주는 것이다.
-
   document.querySelectorAll(".hate").forEach((el) => {
-    console.log(el.className);
     if (currentUid === el.name) {
       el.disabled = true;
     }
 
     if (el.className === `hate ${currentUid}`) {
-      el.disabled = treu;
+      el.disabled = true;
     }
   });
-
-  //   const hate = document.querySelectorAll(".hate");
-
-  //   for (let h of hate) {
-  //     console.log
-  //   }
-  //   console.log(hate.id);
-  //   for (let cmt of cmtObjList) {
-  //     console.log(cmt.likeButton, hate.id);
-  //     if (cmt.likeButton === hate.id) {
-  //       hate.disabled = true;
-  //     }
-  //   }
 };
 
 export const getHomePageList = (target) => {
@@ -356,7 +318,6 @@ export const getQuestionList = async (index) => {
   const commentInput = document.getElementById("commentId");
 
   commentInput.value = qstObjList[index].content;
-  console.log(qstObjList[0].content);
 };
 
 //게시물 소개 가져오기
@@ -376,7 +337,4 @@ export const getQuestionIntroduce = async (index) => {
   const Input = document.getElementById("commentIntroduceId");
 
   Input.value = qstObjList[index].intro;
-  console.log(qstObjList[0].intro);
-  console.log(qstObjList[1].intro);
-  console.log(qstObjList[2].intro);
 };
