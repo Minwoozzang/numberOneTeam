@@ -59,27 +59,20 @@ export const getMyList = async () => {
       cmtObj.nickname ?? "닉네임 없음"
     }</span></div><div class="cmtAt">
     ${cmtObj.createdAt.toDate().toLocaleString()}</div></footer>
-<<<<<<< HEAD
-    <div>
-    <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-    <button onclick="commentLike(event)" id="${cmtObj.id}" disabled = "${
-      isOwner ? "true" : "false"
-    }">좋아요</button>
-    <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
-    <button onclick="commentHate(event)" id="${cmtObj.id}"
-  disabled = "${isOwner ? "true" : "false"}">싫어요</button>
-  </div>
-  
-=======
+
               </div>
                 <div class="${isOwner ? "updateBtns" : "noDisplay"}">
                   <div>     
-                    <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-                    <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />   
+                    <input type="text" value="${
+                      cmtObj.plusCounter
+                    }" id="input1${cmtObj.id}" />
+                    <input type="text" value="${
+                      cmtObj.minusCounter
+                    }" id="input2${cmtObj.id}" />   
                   </div>   
                 </div>            
               </div>
->>>>>>> 16d0d5f7c7de5e35b49a4d674ee9a6ec9b72e4e9
+
      </div>`;
     const div = document.createElement("div");
     div.classList.add("mycards");
@@ -87,5 +80,3 @@ export const getMyList = async () => {
     commnetList.appendChild(div);
   });
 };
-
-

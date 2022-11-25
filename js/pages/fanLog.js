@@ -213,7 +213,6 @@ export const getCommentList = async (time) => {
       .toLocaleString()}</div></footer>
       <div>
   <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-
   <button onclick="commentLike(event)" class="hate" id="${cmtObj.id}" name="${
       cmtObj.creatorId
     }">좋아요</button>
@@ -222,7 +221,6 @@ export const getCommentList = async (time) => {
       cmtObj.creatorId
     }" >싫어요</button>
 </div>
-
               </div>
               <div class="${isOwner ? "updateBtns" : "noDisplay"}">
                    <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
@@ -247,6 +245,10 @@ export const getCommentList = async (time) => {
     //   document.getElementById(cmtObj.id).disabled = true;
     // }
   });
+
+  // el은 모든 버튼이고, el.name는 위에서 cmtObj.creatorId;즉 작성글의 아이디이다
+  // currentUid는 로그인한 아이디이다.
+  // 작성글의 아이디가 로그인 아이디와 같을 때 버튼을 비활성화 해주는 것이다.
   document.querySelectorAll(".hate").forEach((el) => {
     console.log(el);
     console.log(el.name);
