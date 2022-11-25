@@ -1,6 +1,5 @@
 import {
   doc,
-  setDoc,
   addDoc,
   updateDoc,
   deleteDoc,
@@ -8,7 +7,6 @@ import {
   orderBy,
   query,
   getDocs,
-  where,
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
 import { dbService, authService } from "../firebase.js";
 
@@ -17,7 +15,6 @@ let comments = "";
 
 export const save_comment = async (event) => {
   event.preventDefault();
-  // debugger;
   console.log(selectedDate);
   const commentInput = document.getElementById("commentId");
   const comment = document.getElementById("comment");
@@ -100,11 +97,6 @@ export const commentLike = async (event) => {
   // const udBtns = document.querySelector(".button1");
   // console.log(udBtns);
   // udBtns.disabled = "true";
-
-  // button 아이디를 불러온다.
-  // input 아이디를 불러온다, 변수를 준 이유는 버튼 아이디와 인풋 아이디를 조건문에서 같게 해서 1씩 증가시키기 위해서이다.
-  // like에 input1.value (지금은 문자 0), 을 넘버 0 으로 저장해준다.
-  // 버튼 아이디에 input1을 붙혀서 같게 해주고, 인풋아이디랑 같다면 like 하나씩 증가하게 해준다.
   const id = event.target.id;
   console.log(event.target);
   const input1 = document.getElementById(`input1${id}`);
@@ -217,13 +209,15 @@ export const getCommentList = async (time) => {
     }</span></div><div class="cmtAt">${cmtObj.createdAt
       .toDate()
       .toLocaleString()}</div></footer>
-      <div class="${isOwner ? "noDisplay" : "show"}">
+      <div>
   <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-  <button onclick="commentLike(event)" id="${
-    cmtObj.id
-  }" class="button1">좋아요</button>
+  <button onclick="commentLike(event)" id="${cmtObj.id}" class="${
+      isOwner ? "noDisplay" : "show"
+    }">좋아요</button>
   <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
-  <button onclick="commentHate(event)" id="${cmtObj.id}">싫어요</button>
+  <button onclick="commentHate(event)" id="${cmtObj.id}" class="${
+      isOwner ? "noDisplay" : "show"
+    }">싫어요</button>
 </div>
 
               </div>
@@ -296,7 +290,6 @@ export const getHomePageList = (target) => {
   else if (target.textContent === "내일") selectedDate = "tomorrow";
   else selectedDate = "yesterday";
   getCommentList(selectedDate);
-  console.log(selectedDate);
 };
 
 // 게시글 가져오기
@@ -317,7 +310,4 @@ export const getQuestionList = async (index) => {
   const commentInput = document.getElementById("commentId");
 
   commentInput.value = qstObjList[index].content;
-  // console.log(qstObjList);
-  // console.log(qstObjList[1].content);
-  // console.log(qstObjList);
 };
