@@ -237,6 +237,8 @@ export const getCommentList = async (time) => {
     div.innerHTML = temp_html;
     commnetList.appendChild(div);
 
+    // forEach 문에서 querySelector을 돌리면 .hate의 버튼이 모두 불러와져야하는데 처음 껏만 반복해서 불러와지는 버그가 발생
+    // 원래대로라면 맞는 문법이고 제대로 실행되어야 한다.
     // const hate = document.querySelector(".hate");
     // console.log(hate);
     // console.log(currentUid === cmtObj.creatorId);
@@ -245,10 +247,10 @@ export const getCommentList = async (time) => {
     //   document.getElementById(cmtObj.id).disabled = true;
     // }
   });
-
-  console.log(document.querySelectorAll(".hate"));
   document.querySelectorAll(".hate").forEach((el) => {
+    console.log(el);
     console.log(el.name);
+    // console.log(currentUid);
     if (currentUid === el.name) {
       el.disabled = true;
     }
