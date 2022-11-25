@@ -1,7 +1,7 @@
 import { handleAuth, onToggle, logout } from "./pages/auth.js";
 import { changeProfile, onFileChange, profileModal } from "./pages/profile.js";
 import { socialLogin } from "./pages/auth.js";
-import { handleLocation, goToProfile, goToMyPage } from "./router.js";
+import { handleLocation, goToProfile } from "./router.js";
 import { authService } from "./firebase.js";
 import {
   save_comment,
@@ -13,6 +13,7 @@ import {
   commentLike,
   commentHate,
   getQuestionList,
+  getQuestionIntroduce, 
 } from "./pages/fanLog.js";
 
 // url 바뀌면 handleLocation 실행하여 화면 변경
@@ -66,3 +67,4 @@ window.getHomePageList = getHomePageList;
 window.commentLike = commentLike;
 window.commentHate = commentHate;
 window.getQuestionList = getQuestionList;
+window.getQuestionIntroduce = getQuestionIntroduce; 

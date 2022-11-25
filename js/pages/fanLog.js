@@ -17,6 +17,7 @@ export const save_comment = async (event) => {
   event.preventDefault();
   console.log(selectedDate);
   const commentInput = document.getElementById("commentId");
+  const commentIntro = document.getElementById("commentIntroduceId");
   const comment = document.getElementById("comment");
   if (selectedDate === "yesterday") comments = "comment1";
   else if (selectedDate === "today") comments = "comment2";
@@ -32,6 +33,7 @@ export const save_comment = async (event) => {
       plusCounter: 0,
       minusCounter: 0,
       content: commentInput.value,
+      intro: commentIntro.value,
     });
     comment.value = "";
     getCommentList(selectedDate);
@@ -139,12 +141,15 @@ export const getCommentList = async (time) => {
   if (selectedDate === "yesterday") {
     comments = "comment1";
     getQuestionList(0);
+    getQuestionIntroduce(0);
   } else if (selectedDate === "today") {
     comments = "comment2";
     getQuestionList(1);
+    getQuestionIntroduce(1);
   } else {
     comments = "comment3";
     getQuestionList(2);
+    getQuestionIntroduce(2);
   }
   if (time === "yesterday") {
     console.log(comments);
@@ -241,9 +246,9 @@ export const getCommentList = async (time) => {
 
   });
 
-  console.log(document.querySelectorAll(".hate"));
+  // console.log(document.querySelectorAll(".hate"));
   document.querySelectorAll(".hate").forEach((el)=>{
-    console.log(el.name);
+    // console.log(el.name);
     if((currentUid === el.name)) {
       el.disabled = true;
     }
@@ -326,4 +331,27 @@ export const getQuestionList = async (index) => {
   const commentInput = document.getElementById("commentId");
 
   commentInput.value = qstObjList[index].content;
+  console.log(qstObjList[0].content);
+};
+
+//게시물 소개 가져오기
+
+export const getQuestionIntroduce = async (index) => {
+  let qstObjList = [];
+  const q = query(collection(dbService, "introtest"));
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    const questionObj = {
+      ...doc.data(),
+    };
+    qstObjList.push(questionObj);
+  });
+
+  const Input = document.getElementById("commentIntroduceId");
+
+  Input.value = qstObjList[index].intro;
+  console.log(qstObjList[0].intro);
+  console.log(qstObjList[1].intro);
+  console.log(qstObjList[2].intro);
 };
