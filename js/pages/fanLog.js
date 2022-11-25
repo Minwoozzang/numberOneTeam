@@ -19,6 +19,7 @@ export const save_comment = async (event) => {
   event.preventDefault();
   console.log(selectedDate);
   const commentInput = document.getElementById("commentId");
+  const commentIntro = document.getElementById("commentIntroduceId");
   const comment = document.getElementById("comment");
   if (selectedDate === "yesterday") comments = "comment1";
   else if (selectedDate === "today") comments = "comment2";
@@ -36,6 +37,7 @@ export const save_comment = async (event) => {
       content: commentInput.value,
       likeButton: "",
       hateButton: "",
+      intro: commentIntro.value,
     });
     console.log(uid);
     comment.value = "";
@@ -153,12 +155,15 @@ export const getCommentList = async (time) => {
   if (selectedDate === "yesterday") {
     comments = "comment1";
     getQuestionList(0);
+    getQuestionIntroduce(0);
   } else if (selectedDate === "today") {
     comments = "comment2";
     getQuestionList(1);
+    getQuestionIntroduce(1);
   } else {
     comments = "comment3";
     getQuestionList(2);
+    getQuestionIntroduce(2);
   }
   if (time === "yesterday") {
     const q = query(
@@ -254,14 +259,15 @@ export const getCommentList = async (time) => {
 
   document.querySelectorAll(".hate").forEach((el) => {
     console.log(el.className);
-    // if (currentUid === el.name) {
-    //   el.disabled = true;
-    // }
-
-    if (el.className === `hate ${currentUid}`) {
+    if (currentUid === el.name) {
       el.disabled = true;
     }
+
+    if (el.className === `hate ${currentUid}`) {
+      el.disabled = treu;
+    }
   });
+
   //   const hate = document.querySelectorAll(".hate");
 
   //   for (let h of hate) {
@@ -350,4 +356,27 @@ export const getQuestionList = async (index) => {
   const commentInput = document.getElementById("commentId");
 
   commentInput.value = qstObjList[index].content;
+  console.log(qstObjList[0].content);
+};
+
+//게시물 소개 가져오기
+
+export const getQuestionIntroduce = async (index) => {
+  let qstObjList = [];
+  const q = query(collection(dbService, "introtest"));
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    const questionObj = {
+      ...doc.data(),
+    };
+    qstObjList.push(questionObj);
+  });
+
+  const Input = document.getElementById("commentIntroduceId");
+
+  Input.value = qstObjList[index].intro;
+  console.log(qstObjList[0].intro);
+  console.log(qstObjList[1].intro);
+  console.log(qstObjList[2].intro);
 };
