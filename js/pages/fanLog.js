@@ -211,11 +211,11 @@ export const getCommentList = async (time) => {
       .toDate()
       .toLocaleString()}</div></footer>
       <div>
-  <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-  <button onclick="commentLike(event)" class="hate" id="${cmtObj.id}" name="${cmtObj.creatorId}">좋아요</button>
-  <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
-  <button onclick="commentHate(event)" class="hate" id="${cmtObj.id}" name="${cmtObj.creatorId}" >싫어요</button>
-</div>
+          <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
+          <button onclick="commentLike(event)" class="hate" id="${cmtObj.id}" name="${cmtObj.creatorId}">좋아요</button>
+          <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
+          <button onclick="commentHate(event)" class="hate" id="${cmtObj.id}" name="${cmtObj.creatorId}" >싫어요</button>
+      </div>
 
               </div>
               <div class="${isOwner ? "updateBtns" : "noDisplay"}">
