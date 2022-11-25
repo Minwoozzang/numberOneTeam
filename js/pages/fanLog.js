@@ -12,6 +12,8 @@ import { dbService, authService } from "../firebase.js";
 
 let selectedDate = "today";
 let comments = "";
+console.log(authService);
+// console.log(authService.currentUser.uid);
 
 export const save_comment = async (event) => {
   event.preventDefault();
@@ -32,7 +34,10 @@ export const save_comment = async (event) => {
       plusCounter: 0,
       minusCounter: 0,
       content: commentInput.value,
+      likeButton: "",
+      hateButton: "",
     });
+    console.log(uid);
     comment.value = "";
     getCommentList(selectedDate);
   } catch (error) {
@@ -93,22 +98,24 @@ export const delete_comment = async (event) => {
 
 export const commentLike = async (event) => {
   event.preventDefault();
-  // <------------ 나중에 disabled 할수도 있어서 남겨둔 거니 지우지 마세요!! -------------->
-  // const udBtns = document.querySelector(".button1");
-  // console.log(udBtns);
-  // udBtns.disabled = "true";
   const id = event.target.id;
-  console.log(event.target);
   const input1 = document.getElementById(`input1${id}`);
   let like = Number(input1.value); // 0
   if (input1.id === `input1${id}`) {
-    console.log(id);
     like++;
   }
-
+  // event.target.disabled = true;
+  const uid = authService.currentUser.uid;
   const commentRef = doc(dbService, comments, id);
   try {
     await updateDoc(commentRef, { plusCounter: like });
+    // getCommentList(selectedDate);
+  } catch (error) {
+    alert(error);
+  }
+  const commentRef1 = doc(dbService, comments, id);
+  try {
+    await updateDoc(commentRef1, { likeButton: uid });
     getCommentList(selectedDate);
   } catch (error) {
     alert(error);
@@ -121,13 +128,20 @@ export const commentHate = async (event) => {
   const input2 = document.getElementById(`input2${id}`);
   let like = Number(input2.value);
   if (input2.id === `input2${id}`) {
-    console.log(id);
     like++;
   }
-
+  event.target.disabled = true;
+  const uid = authService.currentUser.uid;
   const commentRef = doc(dbService, comments, id);
   try {
     await updateDoc(commentRef, { minusCounter: like });
+    // getCommentList(selectedDate);
+  } catch (error) {
+    alert(error);
+  }
+  const commentRef1 = doc(dbService, comments, id);
+  try {
+    await updateDoc(commentRef1, { hateButton: uid });
     getCommentList(selectedDate);
   } catch (error) {
     alert(error);
@@ -147,23 +161,19 @@ export const getCommentList = async (time) => {
     getQuestionList(2);
   }
   if (time === "yesterday") {
-    console.log(comments);
     const q = query(
       collection(dbService, comments),
       orderBy("createdAt", "desc")
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      if (typeof doc.data().createdAt !== "string") {
-        const commentObj = {
-          id: doc.id,
-          ...doc.data(),
-        };
-        cmtObjList.push(commentObj);
-      }
+      const commentObj = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      cmtObjList.push(commentObj);
     });
   } else if (time === "today") {
-    console.log(comments);
     const q = query(
       collection(dbService, comments),
       orderBy("createdAt", "desc")
@@ -177,23 +187,9 @@ export const getCommentList = async (time) => {
       cmtObjList.push(commentObj);
     });
   } else if (time === "tomorrow") {
-    const q = query(
-      collection(dbService, comments),
-      orderBy("createdAt", "desc")
-    );
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      const commentObj = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      cmtObjList.push(commentObj);
-      console.log(cmtObjList);
-    });
   }
   const commnetList = document.getElementById("comment-list");
   const currentUid = authService.currentUser.uid;
-
   commnetList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
@@ -213,13 +209,13 @@ export const getCommentList = async (time) => {
       .toLocaleString()}</div></footer>
       <div>
   <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-  <button onclick="commentLike(event)" class="hate" id="${cmtObj.id}" name="${
-      cmtObj.creatorId
-    }">좋아요</button>
+  <button onclick="commentLike(event)" class="hate ${cmtObj.likeButton}" id="${
+      cmtObj.id
+    }" name="${cmtObj.creatorId}">좋아요</button>
   <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
-  <button onclick="commentHate(event)" class="hate" id="${cmtObj.id}" name="${
-      cmtObj.creatorId
-    }" >싫어요</button>
+  <button onclick="commentHate(event)" class="hate ${cmtObj.hateButton}"" id="${
+      cmtObj.id
+    }" name="${cmtObj.creatorId}">싫어요</button>
 </div>
               </div>
               <div class="${isOwner ? "updateBtns" : "noDisplay"}">
@@ -235,6 +231,12 @@ export const getCommentList = async (time) => {
     div.innerHTML = temp_html;
     commnetList.appendChild(div);
 
+    // const hate = document.querySelector(".hate");
+    // console.log(hate);
+    // if (cmtObj.likeButton === hate.id) {
+    //   hate.disabled = true;
+    // }
+
     // forEach 문에서 querySelector을 돌리면 .hate의 버튼이 모두 불러와져야하는데 처음 껏만 반복해서 불러와지는 버그가 발생
     // 원래대로라면 맞는 문법이고 제대로 실행되어야 한다.
     // const hate = document.querySelector(".hate");
@@ -249,14 +251,29 @@ export const getCommentList = async (time) => {
   // el은 모든 버튼이고, el.name는 위에서 cmtObj.creatorId;즉 작성글의 아이디이다
   // currentUid는 로그인한 아이디이다.
   // 작성글의 아이디가 로그인 아이디와 같을 때 버튼을 비활성화 해주는 것이다.
+
   document.querySelectorAll(".hate").forEach((el) => {
-    console.log(el);
-    console.log(el.name);
-    // console.log(currentUid);
-    if (currentUid === el.name) {
+    console.log(el.className);
+    // if (currentUid === el.name) {
+    //   el.disabled = true;
+    // }
+
+    if (el.className === `hate ${currentUid}`) {
       el.disabled = true;
     }
   });
+  //   const hate = document.querySelectorAll(".hate");
+
+  //   for (let h of hate) {
+  //     console.log
+  //   }
+  //   console.log(hate.id);
+  //   for (let cmt of cmtObjList) {
+  //     console.log(cmt.likeButton, hate.id);
+  //     if (cmt.likeButton === hate.id) {
+  //       hate.disabled = true;
+  //     }
+  //   }
 };
 
 export const getHomePageList = (target) => {
