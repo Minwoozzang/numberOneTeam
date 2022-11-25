@@ -10,7 +10,7 @@ import { dbService, authService } from "../firebase.js";
 export const getMyList = async () => {
   let cmtObjList = [];
   const currentUid = authService.currentUser.uid;
-  for (let i = 1; i < 5; i++) {
+  for (let i = 1; i < 4; i++) {
     const q = query(
       collection(dbService, `comment${i}`),
       where("creatorId", "==", currentUid),
@@ -50,6 +50,7 @@ export const getMyList = async () => {
     const temp_html = `<div class="card commentCard">
           <div class="card-body">
           <div>${cmtObj.content}<div>
+          <div>${cmtObj.intro}</div>
               <div class="blockquote">
                   <p class="commentText">${cmtObj.text}</p>
                   <p id="${cmtObj.id}" class="noDisplay"></p>
@@ -60,7 +61,6 @@ export const getMyList = async () => {
     }</span></div><div class="cmtAt">
     ${cmtObj.createdAt.toDate().toLocaleString()}</div></footer>
               </div>
-                
                   <div>     
                     <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
                     <button onclick="commentLike(event)" class="hate" id="${cmtObj.id}" name="${cmtObj.creatorId}">좋아요</button>
@@ -78,7 +78,7 @@ export const getMyList = async () => {
 
   console.log(document.querySelectorAll(".hate"));
   document.querySelectorAll(".hate").forEach((el)=>{
-    console.log(el.name);
+    // console.log(el.name);
     if((currentUid === el.name)) {
       el.disabled = true;
     }
