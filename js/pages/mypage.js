@@ -1,8 +1,4 @@
 import {
-  doc,
-  addDoc,
-  updateDoc,
-  deleteDoc,
   collection,
   orderBy,
   query,
@@ -60,17 +56,21 @@ export const getMyList = async () => {
                   <p class="commentText">${cmtObj.text}</p>
                   <p id="${cmtObj.id}" class="noDisplay"></p>
                   <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${
-                    cmtObj.profileImg ?? ""
+                    cmtObj.profileImg ?? "/assets/blankProfile.webp"
                   }" alt="profileImg" /><span>${
       cmtObj.nickname ?? "닉네임 없음"
     }</span></div><div class="cmtAt">
     ${cmtObj.createdAt.toDate().toLocaleString()}</div></footer>
-              </div>
-              <div class="${isOwner ? "updateBtns" : "noDisplay"}">
-                   
-                
-              </div>            
-            </div>
+    <div>
+    <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
+    <button onclick="commentLike(event)" id="${cmtObj.id}" disabled = "${
+      isOwner ? "true" : "false"
+    }">좋아요</button>
+    <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
+    <button onclick="commentHate(event)" id="${cmtObj.id}"
+  disabled = "${isOwner ? "true" : "false"}">싫어요</button>
+  </div>
+  
      </div>`;
     const div = document.createElement("div");
     div.classList.add("mycards");

@@ -188,6 +188,7 @@ export const getCommentList = async (time) => {
         ...doc.data(),
       };
       cmtObjList.push(commentObj);
+      console.log(cmtObjList);
     });
   }
   const commnetList = document.getElementById("comment-list");
@@ -203,7 +204,7 @@ export const getCommentList = async (time) => {
                     cmtObj.id
                   }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
                   <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${
-                    cmtObj.profileImg ?? ""
+                    cmtObj.profileImg ?? "/assets/blankProfile.webp"
                   }" alt="profileImg" /><span>${
       cmtObj.nickname ?? "닉네임 없음"
     }</span></div><div class="cmtAt">${cmtObj.createdAt
@@ -211,13 +212,13 @@ export const getCommentList = async (time) => {
       .toLocaleString()}</div></footer>
       <div>
   <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-  <button onclick="commentLike(event)" id="${cmtObj.id}" class="${
-      isOwner ? "noDisplay" : "show"
-    }">좋아요</button>
+  <button onclick="commentLike(event)" id="${
+    cmtObj.id
+  }" class="button">좋아요</button>
   <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
-  <button onclick="commentHate(event)" id="${cmtObj.id}" class="${
-      isOwner ? "noDisplay" : "show"
-    }">싫어요</button>
+  <button onclick="commentHate(event)" id="${
+    cmtObj.id
+  }" class="button">싫어요</button>
 </div>
 
               </div>
