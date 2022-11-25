@@ -1,8 +1,4 @@
 import {
-  doc,
-  addDoc,
-  updateDoc,
-  deleteDoc,
   collection,
   orderBy,
   query,
@@ -31,23 +27,21 @@ export const getMyList = async () => {
     });
   }
 
-  let qstObjList = [];
-  const q = query(collection(dbService, "comment4"));
+  // let qstObjList = [];
+  // const q = query(collection(dbService, "comment4"));
 
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    const questionObj = {
-      content: doc.content,
-      ...doc.data(),
-    };
-    qstObjList.push(questionObj);
-  });
+  // const querySnapshot = await getDocs(q);
+  // querySnapshot.forEach((doc) => {
+  //   const questionObj = {
+  //     content: doc.content,
+  //     ...doc.data(),
+  //   };
+  //   qstObjList.push(questionObj);
+  // });
 
-  console.log(qstObjList);
+  // console.log(qstObjList);
 
-  // cmtObjList = [...cmtObjList, ...qstObjList];
-
-  console.log(cmtObjList);
+  // console.log(cmtObjList);
 
   const commnetList = document.getElementById("mypage-list");
   commnetList.innerHTML = "";
@@ -60,17 +54,19 @@ export const getMyList = async () => {
                   <p class="commentText">${cmtObj.text}</p>
                   <p id="${cmtObj.id}" class="noDisplay"></p>
                   <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${
-                    cmtObj.profileImg ?? ""
+                    cmtObj.profileImg ?? "/assets/blankProfile.webp"
                   }" alt="profileImg" /><span>${
       cmtObj.nickname ?? "닉네임 없음"
     }</span></div><div class="cmtAt">
     ${cmtObj.createdAt.toDate().toLocaleString()}</div></footer>
               </div>
-              <div class="${isOwner ? "updateBtns" : "noDisplay"}">
-                   
-                
-              </div>            
-            </div>
+                <div class="${isOwner ? "updateBtns" : "noDisplay"}">
+                  <div>     
+                    <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
+                    <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />   
+                  </div>   
+                </div>            
+              </div>
      </div>`;
     const div = document.createElement("div");
     div.classList.add("mycards");
@@ -78,3 +74,5 @@ export const getMyList = async () => {
     commnetList.appendChild(div);
   });
 };
+
+

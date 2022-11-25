@@ -192,6 +192,7 @@ export const getCommentList = async (time) => {
   }
   const commnetList = document.getElementById("comment-list");
   const currentUid = authService.currentUser.uid;
+  
   commnetList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
@@ -203,7 +204,7 @@ export const getCommentList = async (time) => {
                     cmtObj.id
                   }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
                   <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${
-                    cmtObj.profileImg ?? ""
+                    cmtObj.profileImg ?? "/assets/blankProfile.webp"
                   }" alt="profileImg" /><span>${
       cmtObj.nickname ?? "닉네임 없음"
     }</span></div><div class="cmtAt">${cmtObj.createdAt
@@ -211,13 +212,9 @@ export const getCommentList = async (time) => {
       .toLocaleString()}</div></footer>
       <div>
   <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-  <button onclick="commentLike(event)" id="${cmtObj.id}" class="${
-      isOwner ? "noDisplay" : "show"
-    }">좋아요</button>
+  <button onclick="commentLike(event)" class="hate" id="${cmtObj.id}" name="${cmtObj.creatorId}">좋아요</button>
   <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
-  <button onclick="commentHate(event)" id="${cmtObj.id}" class="${
-      isOwner ? "noDisplay" : "show"
-    }">싫어요</button>
+  <button onclick="commentHate(event)" class="hate" id="${cmtObj.id}" name="${cmtObj.creatorId}" >싫어요</button>
 </div>
 
               </div>
@@ -233,8 +230,27 @@ export const getCommentList = async (time) => {
     div.classList.add("mycards");
     div.innerHTML = temp_html;
     commnetList.appendChild(div);
+
+    // const hate = document.querySelector(".hate");
+    // console.log(hate);
+    // console.log(currentUid === cmtObj.creatorId);
+    // if((currentUid === cmtObj.creatorId)) {
+    //   console.log(document.querySelector(`button[name=${cmtObj.creatorId}]`));
+    //   document.getElementById(cmtObj.id).disabled = true;
+    // }
+
   });
+
+  console.log(document.querySelectorAll(".hate"));
+  document.querySelectorAll(".hate").forEach((el)=>{
+    console.log(el.name);
+    if((currentUid === el.name)) {
+      el.disabled = true;
+    }
+  })  
 };
+
+
 
 export const getHomePageList = (target) => {
   const { photoURL, displayName } = authService.currentUser;
