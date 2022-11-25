@@ -60,10 +60,12 @@ export const getMyList = async () => {
     }</span></div><div class="cmtAt">
     ${cmtObj.createdAt.toDate().toLocaleString()}</div></footer>
               </div>
-                <div class="${isOwner ? "updateBtns" : "noDisplay"}">
+                
                   <div>     
                     <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-                    <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />   
+                    <button onclick="commentLike(event)" class="hate" id="${cmtObj.id}" name="${cmtObj.creatorId}">좋아요</button>
+                    <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
+                    <button onclick="commentHate(event)" class="hate" id="${cmtObj.id}" name="${cmtObj.creatorId}" >싫어요</button>
                   </div>   
                 </div>            
               </div>
@@ -73,6 +75,14 @@ export const getMyList = async () => {
     div.innerHTML = temp_html;
     commnetList.appendChild(div);
   });
+
+  console.log(document.querySelectorAll(".hate"));
+  document.querySelectorAll(".hate").forEach((el)=>{
+    console.log(el.name);
+    if((currentUid === el.name)) {
+      el.disabled = true;
+    }
+  })  
 };
 
 
