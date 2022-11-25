@@ -17,8 +17,9 @@ let comments = "";
 
 export const save_comment = async (event) => {
   event.preventDefault();
-  debugger;
+  // debugger;
   console.log(selectedDate);
+  const commentInput = document.getElementById("commentId");
   const comment = document.getElementById("comment");
   if (selectedDate === "yesterday") comments = "comment1";
   else if (selectedDate === "today") comments = "comment2";
@@ -33,6 +34,7 @@ export const save_comment = async (event) => {
       nickname: displayName,
       plusCounter: 0,
       minusCounter: 0,
+      content: commentInput.value,
     });
     comment.value = "";
     getCommentList(selectedDate);
@@ -315,6 +317,7 @@ export const getQuestionList = async (index) => {
   const commentInput = document.getElementById("commentId");
 
   commentInput.value = qstObjList[index].content;
-  console.log(qstObjList);
-  console.log(qstObjList[0].content);
+  // console.log(qstObjList);
+  // console.log(qstObjList[1].content);
+  // console.log(qstObjList);
 };
