@@ -88,10 +88,11 @@ export const delete_list = async (event) => {
   }
 };
 
+
 export const getMyList = async () => {
   let cmtObjList = [];
   const currentUid = authService.currentUser.uid;
-  for (let i = 1; i < 4; i++) {
+  for (let i = 1; i < 5; i++) {
     const q = query(
       collection(dbService, `comment${i}`),
       where("creatorId", "==", currentUid),
@@ -101,19 +102,39 @@ export const getMyList = async () => {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       const commentObj = {
-        id: doc.id,
+        id: doc.id, 
         ...doc.data(),
       };
       cmtObjList.push(commentObj);
     });
   }
+  
+  let qstObjList = [];
+  const q = query(collection(dbService, 'comment4'));
 
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    const questionObj = {
+      content: doc.content,
+      ...doc.data(),
+    };
+    qstObjList.push(questionObj);
+  });
+  
+  console.log(qstObjList);
+  
+  // cmtObjList = [...cmtObjList, ...qstObjList];
+  
+  console.log(cmtObjList);
+
+  
   const commnetList = document.getElementById("mypage-list");
   commnetList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
     const temp_html = `<div class="card commentCard">
           <div class="card-body">
+          <div>${cmtObj.content}<div>
               <div class="blockquote">
                   <p class="commentText">${cmtObj.text}</p>
                   <p id="${cmtObj.id}" class="noDisplay"></p>
@@ -136,3 +157,4 @@ export const getMyList = async () => {
     commnetList.appendChild(div);
   });
 };
+

@@ -17,8 +17,9 @@ let comments = '';
 
 export const save_comment = async (event) => {
   event.preventDefault();
-  debugger;
+  // debugger;
   console.log(selectedDate);
+  const commentInput = document.getElementById('commentId');
   const comment = document.getElementById('comment');
   if (selectedDate === 'yesterday') comments = 'comment1';
   else if (selectedDate === 'today') comments = 'comment2';
@@ -33,6 +34,7 @@ export const save_comment = async (event) => {
       nickname: displayName,
       plusCounter: 0,
       minusCounter: 0,
+      content: commentInput.value,
     });
     comment.value = '';
     getCommentList(selectedDate);
@@ -142,10 +144,16 @@ export const commentHate = async (event) => {
 
 export const getCommentList = async (time) => {
   let cmtObjList = [];
-  if (selectedDate === 'yesterday') comments = 'comment1';
-  else if (selectedDate === 'today') comments = 'comment2';
-  else comments = 'comment3';
-
+  if (selectedDate === 'yesterday') {
+    comments = 'comment1';
+    getQuestionList(0);
+  } else if (selectedDate === 'today') {
+    comments = 'comment2';
+    getQuestionList(1);
+  } else {
+    comments = 'comment3';
+    getQuestionList(2);
+  }
   if (time === 'yesterday') {
     console.log(comments);
     const q = query(
@@ -203,7 +211,7 @@ export const getCommentList = async (time) => {
                     cmtObj.id
                   }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
                   <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${
-                    cmtObj.profileImg
+                    cmtObj.profileImg ?? ''
                   }" alt="profileImg" /><span>${
       cmtObj.nickname ?? '닉네임 없음'
     }</span></div><div class="cmtAt">${cmtObj.createdAt
@@ -289,4 +297,27 @@ export const getHomePageList = (target) => {
   else selectedDate = 'yesterday';
   getCommentList(selectedDate);
   console.log(selectedDate);
+};
+
+// 게시글 가져오기
+
+export const getQuestionList = async (index) => {
+  let qstObjList = [];
+  const q = query(collection(dbService, 'questions'));
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    const questionObj = {
+      content: doc.content,
+      ...doc.data(),
+    };
+    qstObjList.push(questionObj);
+  });
+
+  const commentInput = document.getElementById('commentId');
+
+  commentInput.value = qstObjList[index].content;
+  // console.log(qstObjList);
+  // console.log(qstObjList[1].content);
+  // console.log(qstObjList);
 };

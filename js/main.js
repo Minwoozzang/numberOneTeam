@@ -12,6 +12,7 @@ import {
   getHomePageList,
   commentLike,
   commentHate,
+  getQuestionList,
 } from './pages/fanLog.js';
 
 import {
@@ -72,6 +73,7 @@ window.getHomePageList = getHomePageList;
 window.save_list = save_list;
 window.commentLike = commentLike;
 window.commentHate = commentHate;
+window.getQuestionList = getQuestionList;
 // window.update_list = update_list;
 // window.onEditing_list = onEditing_list;
 // window.delete_list = delete_list;
