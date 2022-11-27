@@ -15,6 +15,7 @@ let comments = "";
 
 export const save_comment = async (event) => {
   event.preventDefault();
+
   const commentInput = document.getElementById("commentId");
   const commentIntro = document.getElementById("commentIntroduceId");
   const comment = document.getElementById("comment");
@@ -204,6 +205,19 @@ export const getCommentList = async (time) => {
       };
       cmtObjList.push(commentObj);
     });
+  } else if (time === "tomorrow") {
+    const q = query(
+      collection(dbService, comments),
+      orderBy("createdAt", "desc")
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const commentObj = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      cmtObjList.push(commentObj);
+    });
   }
 
   const commentList = document.getElementById("comment-list");
@@ -275,7 +289,6 @@ export const getHomePageList = (target) => {
     </span>
   </div>
 </div>
-
 <div id="left-right-page">
   <button onclick="beforePage()" type="button" id="left-page">
     <i class="fa-solid fa-chevron-left"></i>
@@ -284,7 +297,6 @@ export const getHomePageList = (target) => {
     <i class="fa-solid fa-chevron-right"></i>
   </button>
 </div>
-
 <div class="form-write-comment">
   <div class="form-write-nickname">
     <img
@@ -295,7 +307,6 @@ export const getHomePageList = (target) => {
     />
     <span id="nickname">${displayName ?? "닉네임 없음"}</span>
   </div>
-
   <div class="write-comment__textbox">
     <input
       type="text"
