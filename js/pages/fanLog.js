@@ -51,14 +51,17 @@ export const onEditing = (event) => {
   const udBtns = document.querySelectorAll('.editBtn, .deleteBtn');
   udBtns.forEach((udBtn) => (udBtn.disabled = 'true'));
 
-  const cardBody = event.target.parentNode.parentNode;
-  const commentText = cardBody.children[0].children[0];
-  const commentInputP = cardBody.children[0].children[1];
+  const cardBody = event.target.parentNode.parentNode.parentNode;
+  const commentText = cardBody.children[1].children[0].children[0];
+  const commentInputP = cardBody.children[1].children[0].children[1];
+
+  console.log(cardBody);
 
   commentText.classList.add('noDisplay');
   commentInputP.classList.add('d-flex');
   commentInputP.classList.remove('noDisplay');
   commentInputP.children[0].focus();
+  console.log(cardBody.children[1].children[0].children[0]);
 };
 
 export const update_comment = async (event) => {
@@ -225,43 +228,64 @@ export const getCommentList = async (time) => {
   commentList.innerHTML = '';
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
-    const temp_html = `<div class="card commentCard">
-          <div class="card-body">
-              <div class="blockquote">
-                  <p class="commentText">${cmtObj.text}</p>
-                  <p id="${
-                    cmtObj.id
-                  }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
-                  <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${
-                    cmtObj.profileImg ?? '/assets/blankProfile.webp'
-                  }" alt="profileImg" /><span>${
-      cmtObj.nickname ?? '닉네임 없음'
-    }</span></div><div class="cmtAt">${cmtObj.createdAt
-      .toDate()
-      .toLocaleString()}</div></footer>
-      <div>
-  <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-  <input type="image" onclick="commentLike(event)" class="hate ${
-    cmtObj.likeButton
-  }" id="${cmtObj.id}" name="${
+    const temp_html = `
+    <div class="card commentCard">
+    <div class="card-body">
+        <div class="comment_image"><img class="cmtImg" width="50px" height="50px" src="${
+          cmtObj.profileImg ?? '/assets/blankProfile.webp'
+        }" alt="profileImg" /></div>
+        <div class="comment_box">
+          <div class="comment_text">
+          <p class="commentText">${cmtObj.text}</p>
+          <p id="${
+            cmtObj.id
+          }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" />
+          <button class="updateBtn"onclick="update_comment(event)">완료</button></p>
+          </div>
+          <div class="comment_name_at">
+              <div class="comment_name">
+                <span>by&nbsp;&nbsp;<td>${
+                  cmtObj.nickname ?? '닉네임 없음'
+                }</span>
+              </div>
+              <div class="cmtAt">${cmtObj.createdAt
+                .toDate()
+                .toLocaleString()}</div>
+          </div>
+        </div>
+        <div class="btn-container">
+        <div class="comment_like_box">
+          <div class="comment_like_innerbox">
+            <input type="image" onclick="commentLike(event)" class="hate ${
+              cmtObj.likeButton
+            }" id="${cmtObj.id}" name="${
       cmtObj.creatorId
     }" src="/assets/img/likeIcon.png" />
-  <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
-  <input type="image" onclick="commentHate(event)" class="hate ${
-    cmtObj.hateButton
-  }" id="${cmtObj.id}" name="${
+            <input type="text" value="${cmtObj.plusCounter}" id="input1${
+      cmtObj.id
+    }" readonly />
+          </div>
+          <div class="comment_like_innerbox">
+            <input type="image" onclick="commentHate(event)" class="hate ${
+              cmtObj.hateButton
+            }" id="${cmtObj.id}" name="${
       cmtObj.creatorId
     }" src="/assets/img/hateIcon.png" />
-</div>
-              </div>
-              <div class="${isOwner ? 'updateBtns' : 'noDisplay'}">
-                   <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
-                <button name="${
-                  cmtObj.id
-                }" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
-              </div>            
-            </div>
-     </div>`;
+                <input type="text" value="${cmtObj.minusCounter}" id="input2${
+      cmtObj.id
+    }" readonly />
+          </div>
+          </div>
+        
+        <div class="${isOwner ? 'updateBtns' : 'noDisplay'}">
+          <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
+          <button name="${
+            cmtObj.id
+          }" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
+        </div> 
+        </div>
+      </div>
+    </div>`;
     const div = document.createElement('div');
     div.classList.add('mycards');
     div.innerHTML = temp_html;

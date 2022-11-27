@@ -54,8 +54,10 @@ export const getMyList = async () => {
               .toDate()
               .toLocaleString()}</div>
 
-            <div class="${isOwner ? 'updateBtns' : 'noDisplay'}">
-              <div class="likeAndhate">
+            <div class="${
+              isOwner ? 'updateBtns' : 'noDisplay'
+            }" id="likeAndhate">
+              
                 <div class="like">
                   <img src="../assets/img/likeIcon.png" alt="" />
                   <input
@@ -76,7 +78,7 @@ export const getMyList = async () => {
                     onfocus="this.blur()"
                   />
                 </div>
-              </div>
+              
             </div>
           </div>
         </div>

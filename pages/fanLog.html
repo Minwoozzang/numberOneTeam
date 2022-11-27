@@ -1,75 +1,77 @@
 <!-- 네비게이션 -->
-<div>
-  <div class="main-nav">
-    <a href="#mypage"
-      ><button class="mypage-btn" id="mypage">마이페이지</button></a
-    >
-    <span class="nav-title">아하! 지식</span>
-    <div class="nav-profile">
-      <span id="nick-name" class="nickname"></span>
+
+<div class="main-nav">
+  <a href="#mypage"
+    ><button class="mypage-btn" id="mypage">마이페이지</button></a
+  >
+  <span class="nav-title">아하! 지식</span>
+  <div class="nav-profile">
+    <span id="nick-name" class="nickname"></span>
+    <img
+      class="profile-btn profileImg"
+      src="../assets/blankProfile.webp"
+      onclick="profileModal()"
+    />
+  </div>
+</div>
+<div class="main-button">
+  <button onclick="getHomePageList(this)">어제</button>
+  <button onclick="getHomePageList(this)">오늘</button>
+  <button onclick="getHomePageList(this)">내일</button>
+</div>
+
+<div id="question-list">
+  <div class="card questionCard">
+    <div class="card-body">
+      <input type="text" id="commentId" />
+    </div>
+  </div>
+</div>
+
+<div id="question-introduce">
+  <div class="card quesintro">
+    <div class="card-intro">
+      <input type="text" id="commentIntroduceId" />
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="form-write-comment">
+    <div class="form-write-nickname">
       <img
-        class="profile-btn profileImg"
-        src="../assets/blankProfile.webp"
-        onclick="profileModal()"
+        class="profileImage"
+        id="profileImg"
+        width="50em"
+        height="50em"
+        src="/assets/blankProfile.webp"
       />
+      <span id="nickname" class="nickname">닉네임</span>
+    </div>
+
+    <div class="write-comment__textbox">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="댓글을 입력해주세요..."
+        id="comment"
+      />
+      <button
+        onclick="save_comment(event)"
+        type="button"
+        class="write-comment__btn"
+      >
+        V
+      </button>
     </div>
   </div>
-  <div class="main-button">
-    <button onclick="getHomePageList(this)">어제</button>
-    <button onclick="getHomePageList(this)">오늘</button>
-    <button onclick="getHomePageList(this)">내일</button>
+</div>
+
+  <div class="list-comment">
+    <div class="list-title">댓글 리스트</div>
+
+    <div id="comment-list"></div>
   </div>
-
-  <div id="question-list">
-    <div class="card questionCard">
-      <div class="card-body">
-        <input type="text" id="commentId" />
-      </div>
-    </div>
-  </div>
-
-  <div id="question-introduce">
-    <div class="card quesintro">
-      <div class="card-intro">
-        <input type="text" id="commentIntroduceId" />
-      </div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="form-write-comment">
-      <div class="form-write-nickname">
-        <img
-          class="profileImage"
-          id="profileImg"
-          width="50em"
-          height="50em"
-          src="/assets/blankProfile.webp"
-        />
-        <span id="nickname" class="nickname">닉네임</span>
-      </div>
-
-      <div class="write-comment__textbox">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="댓글을 입력해주세요..."
-          id="comment"
-        />
-        <button
-          onclick="save_comment(event)"
-          type="button"
-          class="write-comment__btn"
-        >
-          V
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="list-comment">댓글 리스트</div>
-
-  <div id="comment-list"></div>
 </div>
 
 <!-- 프로필 모달창 -->
@@ -103,3 +105,4 @@
     </form>
   </section>
 </div>
+

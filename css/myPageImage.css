@@ -56,6 +56,7 @@ header img {
 #child_img_3:hover {
   transform: scale(1.1);
 }
+
 #child_img_4 {
   opacity: 0;
   animation: fadeIn2 2s linear;
@@ -95,7 +96,7 @@ header img {
 
 /* 이미지 반응형  */
 
-@media (max-width: 1450px) {
+@media (min-width: 1450px) {
   header {
     height: 550px;
   }
