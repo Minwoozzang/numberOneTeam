@@ -230,7 +230,6 @@ export const getCommentList = async (time) => {
     div.classList.add("mycards");
     div.innerHTML = temp_html;
     commentList.appendChild(div);
-    console.log(commentList);
   });
 
   document.querySelectorAll(".hate").forEach((el) => {
