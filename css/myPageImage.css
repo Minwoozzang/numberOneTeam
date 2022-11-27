@@ -17,7 +17,7 @@ header img {
   height: 350px;
   animation: fadeIn 2s linear;
   animation-delay: 0.5s;
-  animation-fill-mode: both;
+  animation-fill-mode: forwards;
   position: absolute;
   left: 120px;
   top: 60px;
@@ -30,7 +30,6 @@ header img {
   animation-delay: 1.5s;
   animation-fill-mode: forwards;
   position: absolute;
-
   left: 410px;
   top: -27px;
   z-index: 1;
@@ -96,7 +95,7 @@ header img {
 
 /* 이미지 반응형  */
 
-@media (min-width: 1200px) {
+@media (min-width: 1450px) {
   header {
     height: 550px;
   }
