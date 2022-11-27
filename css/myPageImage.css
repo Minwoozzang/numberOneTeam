@@ -51,8 +51,8 @@ header img {
 
 #child_img_4 {
   opacity: 0;
-  animation: fadeIn2 2s linear;
-  animation-delay: 3.5s;
+  /* animation : 이름 진행시간 가속도 지연시간 반복횟수 연결방향; */
+  animation: fadeIn2 2s linear 3.5s 1, rotate 1s linear 5.5s infinite;
   animation-fill-mode: forwards;
   position: absolute;
   left: 830px;
@@ -79,6 +79,18 @@ header img {
   to {
     transform: none;
     opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 
@@ -144,8 +156,7 @@ header img {
 
   #child_img_4 {
     opacity: 0;
-    animation: fadeIn2 2s linear;
-    animation-delay: 3.5s;
+    animation: fadeIn2 2s linear 3.5s 1, rotate 1s linear 5.5s infinite;
     animation-fill-mode: forwards;
     position: absolute;
     left: 980px;

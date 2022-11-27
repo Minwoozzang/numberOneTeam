@@ -229,15 +229,15 @@ export const getCommentList = async (time) => {
     const temp_html = `<div class="card commentCard">
           <div class="card-body">
               <div class="blockquote">
-              <p class="commentText">${cmtObj.text}</p>
-                  <p id="${
-                    cmtObj.id
-                  }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
-                  <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${
+                  <footer class="quote-footer"><div><img class="cmtImg" width="50px" height="50px" src="${
                     cmtObj.profileImg ?? "/assets/blankProfile.webp"
                   }" alt="profileImg" /><span>${
       cmtObj.nickname ?? "닉네임 없음"
-    }</span></div><div class="cmtAt">${cmtObj.createdAt
+    }</span>
+    <p class="commentText">${cmtObj.text}</p>
+    <p id="${
+      cmtObj.id
+    }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p></div><div class="cmtAt">${cmtObj.createdAt
       .toDate()
       .toLocaleString()}</div></footer>
       <div>
