@@ -1,44 +1,125 @@
 <!-- 네비게이션 -->
-<div>
-  <div class="main-nav">
-    <a href="#mypage"
-      ><button class="mypage-btn" id="mypage">마이페이지</button></a
-    >
-    <span class="nav-title">아하! 지식</span>
-    <div class="nav-profile">
-      <span id="nick-name" class="nickname"></span>
+
+<div class="main-nav">
+  <a href="#mypage"
+    ><button class="mypage-btn" id="mypage">마이페이지</button></a
+  >
+  <span class="nav-title">아하! 지식</span>
+  <div class="nav-profile">
+<<<<<<< Updated upstream
+=======
+    <input type="button" class="darkMode" value="dark" onclick="darkMode()"/>
+>>>>>>> Stashed changes
+    <span id="nick-name" class="nickname"></span>
+    <img
+      class="profile-btn profileImg"
+      src="../assets/blankProfile.webp"
+      onclick="profileModal()"
+    />
+  </div>
+</div>
+<<<<<<< Updated upstream
+<div class="main-button">
+  <button onclick="getHomePageList(this)">어제</button>
+  <button onclick="getHomePageList(this)">오늘</button>
+  <button onclick="getHomePageList(this)">내일</button>
+</div>
+
+<div id="question-list">
+  <div class="card questionCard">
+    <div class="card-body">
+      <input type="text" id="commentId" />
+    </div>
+  </div>
+</div>
+
+<div id="question-introduce">
+  <div class="card quesintro">
+    <div class="card-intro">
+      <input type="text" id="commentIntroduceId" />
+=======
+<!-- 메인 -->
+<main class="main">
+  <div class="main-one">
+    <div class="main-button">
+      <div class="main-button__btn">
+        <button onclick="getHomePageList(this)">어제</button>
+        <button onclick="getHomePageList(this)">오늘</button>
+        <button onclick="getHomePageList(this)">내일</button>
+      </div>
+    </div>
+
+    <div id="question-list">
+      <div class="question-Card">
+          <div class="card-title">
+              <input type="text" id="commentId" readonly />
+          </div>
+          <div class="card-text">
+              <input type="text" id="commentIntroduceId" readonly />
+          </div>
+      </div>
+    </div>
+
+    <div id="question-introduce">
+      <div class="card quesintro">
+        <div class="card-intro">
+        </div>
+      </div>
+>>>>>>> Stashed changes
+    </div>
+  </div> 
+  
+  <div class="main-two">
+    <img 
+      class="jammin-one"
+      src="/assets/imgMain/1.png"/>
+
+  </div> 
+  </div>
+<<<<<<< Updated upstream
+</div>
+
+<div class="wrap">
+  <div class="form-write-comment">
+    <div class="form-write-nickname">
       <img
-        class="profile-btn profileImg"
-        src="../assets/blankProfile.webp"
-        onclick="profileModal()"
+        class="profileImage"
+        id="profileImg"
+        width="50em"
+        height="50em"
+        src="/assets/blankProfile.webp"
       />
+      <span id="nickname" class="nickname">닉네임</span>
     </div>
-  </div>
-  <div class="main-button">
-    <button onclick="getHomePageList(this)">어제</button>
-    <button onclick="getHomePageList(this)">오늘</button>
-    <button onclick="getHomePageList(this)">내일</button>
-  </div>
 
-  <div id="question-list">
-    <div class="card questionCard">
-      <div class="card-body">
-        <input type="text" id="commentId" />
-      </div>
-    </div>
-  </div>
+    <div class="write-comment__textbox">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="댓글을 입력해주세요..."
+        id="comment"
+      />
+      <button
+        onclick="save_comment(event)"
+        type="button"
+        class="write-comment__btn"
+      >
+        V
+      </button>
+=======
+</main>
 
-  <div id="question-introduce">
-    <div class="card quesintro">
-      <div class="card-intro">
-        <input type="text" id="commentIntroduceId" />
-      </div>
-    </div>
-  </div>
+<!-- 댓글등록 -->
 
+<div class="comment-and-list-box">
   <div class="wrap">
+
     <div class="form-write-comment">
-      <div class="form-write-nickname">
+      <div class="form-write-title">
+        <span>댓글 작성하기</span>
+      </div>
+
+      <div class="write-comment__textbox">
         <img
           class="profileImage"
           id="profileImg"
@@ -47,13 +128,10 @@
           src="/assets/blankProfile.webp"
         />
         <span id="nickname" class="nickname">닉네임</span>
-      </div>
-
-      <div class="write-comment__textbox">
         <input
           type="text"
           class="form-control"
-          placeholder="댓글을 입력해주세요..."
+          placeholder="댓글을 입력해주세요"
           id="comment"
         />
         <button
@@ -61,22 +139,31 @@
           type="button"
           class="write-comment__btn"
         >
-          V
+        V
         </button>
       </div>
+>>>>>>> Stashed changes
     </div>
+
   </div>
-
-  <div class="list-comment">댓글 리스트</div>
-
-  <div id="comment-list"></div>
 </div>
+
+  <div class="list-comment">
+    <div class="list-title">댓글 리스트</div>
+
+    <div id="comment-list"></div>
+  </div>
+<<<<<<< Updated upstream
+</div>
+=======
+</div> 
+>>>>>>> Stashed changes
 
 <!-- 프로필 모달창 -->
 
 <div id="profilePage">
   <section id="profileWrapper">
-    <h2>프로필 관리</h2>
+    <!-- <h2>프로필 관리</h2> -->
     <form id="profileForm" onsubmit="changeProfile(event)">
       <label id="imgLabel" for="imgInput">
         <img id="profileView" src="/assets/blankProfile.webp" />
@@ -86,6 +173,7 @@
           type="file"
           accept="images/*"
         />
+        <div id="camera-icon"><i class="fa-solid fa-camera"></i></div>
       </label>
       <div>
         <input
@@ -96,8 +184,10 @@
         />
       </div>
       <br />
+
       <input id="profileBtn" type="submit" value="프로필 변경" />
-      <button claass="loginBtn" onclick="logout()">로그아웃</button>
+      <button class="loginBtn" onclick="logout()">로그아웃</button>
     </form>
   </section>
 </div>
+

@@ -1,0 +1,82 @@
+재창 발표정리
+
+1. 메인 화면 바꾸기 기능 구현
+1-1) 버튼 클릭시 화면 렌더링하기
+1) fanLog.js 파일에서 getHomePageList 함수를 만들어 주었다. ( 246번째 줄 )
+2) temp_html 을 처음 화면의 fanLog.html 에서 복사해 주었다. ( 248번째 줄 )
+3) fanLog.html 에서 const wrap = document.querySelector(".wrap"); 을 js에 불러왔다. ( 293번째 줄 )
+4) 1. 함수가 실행될 때 wrap.innerHTML = ""; 로 화면을 초기화 해준다.
+   2. wrap.innerHTML = temp_html; 빈 화면에 새로운 fanLog.html 을 집어 넣는다.
+   3. getCommentList 함수를 실행해서 댓글 창도 렌더링 해준다.
+5) fanLog.html 16,17,18 번째 줄 onclick="getHomePageList(this)" 넣어 클릭시마다 페이지를 렌더링 해준다.
+
+
+1-2) 버튼을 클릭시 데이터 베이스의 컬렉션 값을 바꾸기
+1) fanLog.js 파일에서 전역 변수 let selectedDate = "today"; 값을 설정 ( 처음 실행시 오늘의 글을 보여주기 위해서 )
+2) 전역 변수 let comments = ""; 빈 값 설정 ( 컬렉션 이름을 화면에 따라 바뀌게 하기 위해서 )
+3) fanLog.js 298번째 줄 
+  if (target.textContent === "오늘") selectedDate = "today";
+  else if (target.textContent === "내일") selectedDate = "tomorrow";
+  else selectedDate = "yesterday";
+  조건문 : 매개변수 target.textContent ( fanLog.html 16,17,18 번째 줄에 매개변수 this를 받아온다. )
+         여기에서 target 는 document.querySelector(".main-button button") 이다.
+         즉, 버튼의 textContent가 오늘이면 변수 selectedDate = "today" 로 바뀐다.
+         버튼의 textContent가 내일이면 변수 selectedDate = "tomorrow" 로 바뀐다.
+         그것도 아니면 selectedDate = "yesterday" 로 바뀐다.
+4) save_comment 함수에서 ( fanLog.js 16번째 줄 - 27번째 줄 )
+  if (selectedDate === "yesterday") comments = "comment1";
+  else if (selectedDate === "today") comments = "comment2";
+  else comments = "comment3";
+  selectedDate 의 값에 따라 comment1, comment2, comment3 으로 컬렉션에 데이터를 저장한다.
+  예를 들어, 오늘이면 comment2 에 새로운 댓글 데이터를 저장한다.
+5) getCommentList 함수에서 ( fanLog.js 163번째 줄 - 209번재 줄 )
+      if (time === "yesterday") {
+    const q = query(
+      collection(dbService, comments),
+      orderBy("createdAt", "desc")
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const commentObj = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      cmtObjList.push(commentObj);
+    });
+    매개변수 time 가 selectedDate 의 값을 받아오고 조건에 따라 comment1, comment2, comment3 컬렉션에서 데이터를 받아온다.
+6) 함수가 실행되면 selectedDate 에 따라 컬렉션이 바뀌고 그 날의 데이터를 가져와서 화면에 출력해준다.
+
+
+
+2. 좋아요 버튼 기능 구현
+2-1) 좋아요 횟수 늘리기
+1) save_comment 함수에서 댓글이 저장될 때 plusCounter, minusCounter 의 키를 추가하고 각각 0의 값을 주었다. ( fanLog.js 27번째 줄 )
+2) 좋아요, 싫어요 버튼을 누르면 발동하는 commentLike, commentHate 함수를 생성하였다. ( 100번째 줄 )
+3) 이벤트를 버튼에 주었기 때문에 event.target.id; 의 값은 결국 이벤트를 부여받은 버튼의 아이디가 되고 이것을 id 변수로 지정해 주었다. ( 102번째 줄 )
+4) 1. 숫자의 값을 화면에 출력해 주는 input도 변수에 저장해준다. ( 103번째 줄 )
+   2. input 아이디에 변수 ${id}를 준 이유는 버튼 아이디와 인풋 아이디를 같게 하여 1씩 증가시키는 조건문을 만들기 위해서다.
+      여기에서 ${id}는 파이어베이스에 저장된 데이터의 문서 아이디를 말한다.
+5) 1. input1${id} 에서 input1을 붙혀준 이유는 다른 태그에도 ${id}를 입력해서 input이 아닌 값도 받아와져서 그것을 구분하기 위해서다. ( 105번째 줄 )
+   2. like에 input의 value를 숫자로 변환하여 저장한다.
+   3. 버튼아이디와 인풋아이디가 같다면 like를 하나씩 증가시켜준다.
+6) 좋아요, 싫어요 클릭할 때마다 plusCounter, minusCounter에 like 값으로 업데이트 해준다. ( 116번째 줄 - 123번째 줄 )
+
+
+2-2) 내 아이디는 클릭 금지
+1) 1. 버튼에 name 값으로 cmtObj.creatorId 즉, 작성자의 아이디를 넣어준다. ( fanLog.js 235번째 줄 - 239번째 줄, 241번째 줄 - 245번째 줄 )
+   2. 이 때 cmtObj.creatorId = 로그인한 아이디이다.
+   3. 최종적으로 버튼을 생성할 때 네임값에 로그인한 아이디가 들어가게 된다.
+2) 모든 버튼을 돔으로 가져와서 반복문을 돌려준다. ( 261번째 줄 )
+3) 1. 로그인한 아이디와 el.name의 값이 같다면 disabled ( 262번째 줄 )
+   2. 내가 작성한 댓글의 버튼 name이 로그인한 아이디와 같기 때문에 내 버튼을 누를 수 없다.
+
+
+2-3) 다른 사람 좋아요 1번만 클릭하기
+1) 버튼을 누를 때 로그인한 아이디와 버튼속성의 class 가 같아야 disabled 가 된다. 
+2) 1. 댓글을 등록할 때 데이터베이스에 likeButton , hateButton 을 추가한다. 이 때 값은 빈 문자열을 준다. ( fanLog.js 37번째 줄 - 38번째 줄)
+3) 좋아요 버튼을 누르면 likeButton 의 키 값을 로그인 아이디로 업데이트 시켜준다. ( 118 번째 줄 )
+4) 1. 버튼의 class 값에 ${cmtObj.hateButton} 값을 추가해준다. ( 236 번째 줄 )
+   2. 이 값은 버튼을 누르기 전에는 hate "" 이었다가, 버튼을 눌렀을 때 hate "로그인 아이디"로 바뀐다.
+5) 1. 모든 버튼의 값을 불러와서 버튼의 클래스 명이 hate ${currentUid} 와 같으면 버튼은 disabled ( 266번째 줄 )
+   2. hate ${currentUid} 은 로그인 아이디이고, 버튼을 눌렀을 때 버튼의 class에 추가된다.
+   3. 따라서 맨 처음에는 좋아요, 싫어요를 누를 수 있지만 클릭한 후에는 버튼이 disabled 가 되는 것이다.

@@ -40,6 +40,7 @@ export const handleLocation = async () => {
       authService.currentUser.photoURL ?? '../assets/blankProfile.webp';
 
     getCommentList('today');
+    showImage();
   }
 
   if (path === 'mypage') {
