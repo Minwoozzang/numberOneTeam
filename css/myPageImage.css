@@ -1,64 +1,3 @@
-header {
-  width: 90%;
-  height: 50vh;
-  margin: auto;
-  display: flex;
-  align-self: center;
-  justify-content: center;
-  position: relative;
-}
-
-header img {
-  width: 300px;
-}
-#child_img_1 {
-  opacity: 0;
-  width: 450px;
-  height: 348px;
-  animation: fadeIn 2s linear;
-  animation-delay: 0.5s;
-  animation-fill-mode: forwards;
-  position: absolute;
-  left: 12%;
-  top: 13%;
-  z-index: 4;
-}
-
-#child_img_2 {
-  opacity: 0;
-  animation: fadeIn2 2s linear;
-  animation-delay: 1.5s;
-  animation-fill-mode: forwards;
-  position: absolute;
-  left: 34%;
-  top: -6%;
-  z-index: 1;
-}
-
-#child_img_3 {
-  opacity: 0;
-  width: 350px;
-  height: 452px;
-  animation: fadeIn 2s linear;
-  animation-delay: 2.5s;
-  animation-fill-mode: forwards;
-  position: absolute;
-  left: 48%;
-  top: 2%;
-  z-index: 2;
-}
-
-#child_img_4 {
-  opacity: 0;
-  /* animation : 이름 진행시간 가속도 지연시간 반복횟수 연결방향; */
-  animation: fadeIn2 2s linear 3.5s 1, rotate 1s linear 5.5s infinite;
-  animation-fill-mode: forwards;
-  position: absolute;
-  left: 67%;
-  top: -1%;
-  z-index: 3;
-}
-
 @keyframes fadeIn {
   from {
     transform: translateY(70px);
@@ -93,11 +32,131 @@ header img {
   }
 }
 
+@media (min-width: 0) {
+  header {
+    height: 320px;
+  }
+  header img {
+    width: 200px;
+  }
+
+  #child_img_1 {
+    opacity: 0;
+    width: 280px;
+    height: 230px;
+    animation: fadeIn 2s linear;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 50px;
+    top: 139px;
+    z-index: 4;
+  }
+
+  #child_img_2 {
+    opacity: 0;
+    animation: fadeIn2 2s linear;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 230px;
+    top: 78px;
+    z-index: 1;
+  }
+
+  #child_img_3 {
+    opacity: 0;
+    width: 220px;
+    height: 300px;
+    animation: fadeIn 2s linear;
+    animation-delay: 2.5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 370px;
+    top: 104px;
+    z-index: 2;
+    transform: rotate(-45deg);
+  }
+
+  #child_img_4 {
+    opacity: 0;
+    animation: fadeIn2 2s linear 3.5s 1, rotate 1s linear 5.5s infinite;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 520px;
+    top: 91px;
+    z-index: 3;
+  }
+}
+
+@media (min-width: 768px) {
+  header {
+    width: 90%;
+    height: 430px;
+    margin: auto;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  header img {
+    width: 300px;
+  }
+  #child_img_1 {
+    opacity: 0;
+    width: 450px;
+    height: 350px;
+    animation: fadeIn 2s linear;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 120px;
+    top: 60px;
+    z-index: 4;
+  }
+
+  #child_img_2 {
+    opacity: 0;
+    animation: fadeIn2 2s linear;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 410px;
+    top: -27px;
+    z-index: 1;
+  }
+
+  #child_img_3 {
+    opacity: 0;
+    width: 350px;
+    height: 450px;
+    animation: fadeIn 2s linear;
+    animation-delay: 2.5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 600px;
+    top: 11px;
+    z-index: 2;
+  }
+
+  #child_img_4 {
+    opacity: 0;
+    /* animation : 이름 진행시간 가속도 지연시간 반복횟수 연결방향; */
+    animation: fadeIn2 2s linear 3.5s 1, rotate 1s linear 5.5s infinite;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 830px;
+    top: -5px;
+    z-index: 3;
+  }
+}
+
 /* 이미지 반응형  */
 
 @media (min-width: 1450px) {
   header {
-    height: 550px;
+    height: 570px;
   }
   header img {
     width: 400px;
@@ -149,12 +208,5 @@ header img {
     left: 980px;
     top: -2px;
     z-index: 3;
-  }
-}
-
-@media (min-width: 900) {
-  #child_img_3 #child_img_4 {
-    position: absolute;
-    top: 10%;
   }
 }
