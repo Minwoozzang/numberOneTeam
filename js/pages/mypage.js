@@ -6,6 +6,7 @@ import {
   where,
 } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js';
 import { dbService, authService } from '../firebase.js';
+
 export const getMyList = async () => {
   let cmtObjList = [];
   const currentUid = authService.currentUser.uid;
@@ -87,7 +88,6 @@ export const getMyList = async () => {
     div.innerHTML = temp_html;
     commnetList.appendChild(div);
   });
-
   console.log(document.querySelectorAll('.hate'));
   document.querySelectorAll('.hate').forEach((el) => {
     if (currentUid === el.name) {

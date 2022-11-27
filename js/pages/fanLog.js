@@ -15,6 +15,7 @@ let comments = '';
 
 export const save_comment = async (event) => {
   event.preventDefault();
+
   const commentInput = document.getElementById('commentId');
   const commentIntro = document.getElementById('commentIntroduceId');
   const comment = document.getElementById('comment');
@@ -179,6 +180,19 @@ export const getCommentList = async (time) => {
     });
   } else if (time === 'today') {
     console.log(comments);
+    const q = query(
+      collection(dbService, comments),
+      orderBy('createdAt', 'desc')
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const commentObj = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      cmtObjList.push(commentObj);
+    });
+  } else if (time === 'tomorrow') {
     const q = query(
       collection(dbService, comments),
       orderBy('createdAt', 'desc')

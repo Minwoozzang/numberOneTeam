@@ -1,7 +1,6 @@
 header {
-  width: 80vw;
+  width: 90%;
   height: 400px;
-  /* height: 300px; */
   margin: auto;
   display: flex;
   align-self: center;
@@ -14,14 +13,14 @@ header img {
 }
 #child_img_1 {
   opacity: 0;
-  height: 350px;
   width: 450px;
+  height: 350px;
   animation: fadeIn 2s linear;
   animation-delay: 0.5s;
   animation-fill-mode: forwards;
   position: absolute;
-  left: 10%;
-  top: 19%;
+  left: 120px;
+  top: 60px;
   z-index: 4;
 }
 #child_img_1:hover {
@@ -33,8 +32,9 @@ header img {
   animation-delay: 1.5s;
   animation-fill-mode: forwards;
   position: absolute;
-  left: 32%;
-  top: -6%;
+
+  left: 410px;
+  top: -27px;
   z-index: 1;
 }
 #child_img_2:hover {
@@ -48,8 +48,8 @@ header img {
   animation-delay: 2.5s;
   animation-fill-mode: forwards;
   position: absolute;
-  left: 47%;
-  top: 5%;
+  left: 600px;
+  top: 11px;
   z-index: 2;
   transform: rotate(-45deg);
 }
@@ -62,7 +62,8 @@ header img {
   animation-delay: 3.5s;
   animation-fill-mode: forwards;
   position: absolute;
-  left: 63%;
+  left: 830px;
+  top: -5px;
   z-index: 3;
 }
 
@@ -101,6 +102,7 @@ header img {
   header img {
     width: 400px;
   }
+
   #child_img_1 {
     opacity: 0;
     width: 550px;
@@ -113,9 +115,11 @@ header img {
     top: 100px;
     z-index: 4;
   }
+
   #child_img_1:hover {
     transform: scale(1.1);
   }
+
   #child_img_2 {
     opacity: 0;
     animation: fadeIn2 2s linear;
@@ -126,9 +130,11 @@ header img {
     top: -31px;
     z-index: 1;
   }
+
   #child_img_2:hover {
     transform: scale(1.1);
   }
+
   #child_img_3 {
     opacity: 0;
     width: 450px;
@@ -142,9 +148,11 @@ header img {
     z-index: 2;
     transform: rotate(-45deg);
   }
+
   #child_img_3:hover {
     transform: scale(1.1);
   }
+
   #child_img_4 {
     opacity: 0;
     animation: fadeIn2 2s linear;
@@ -155,6 +163,7 @@ header img {
     top: -2px;
     z-index: 3;
   }
+
   #child_img_4:hover {
     transform: scale(1.1);
   }
