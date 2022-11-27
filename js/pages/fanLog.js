@@ -15,13 +15,13 @@ let comments = "";
 
 export const save_comment = async (event) => {
   event.preventDefault();
-
   const commentInput = document.getElementById("commentId");
   const commentIntro = document.getElementById("commentIntroduceId");
   const comment = document.getElementById("comment");
   if (selectedDate === "yesterday") comments = "comment1";
   else if (selectedDate === "today") comments = "comment2";
   else comments = "comment3";
+
   const { uid, photoURL, displayName } = authService.currentUser;
   try {
     await addDoc(collection(dbService, comments), {
@@ -150,6 +150,7 @@ export const getCommentList = async (time) => {
   if (selectedDate === "yesterday") {
     comments = "comment1";
     getQuestionList(0);
+
     getQuestionIntroduce(0);
   } else if (selectedDate === "today") {
     comments = "comment2";
@@ -160,6 +161,7 @@ export const getCommentList = async (time) => {
     getQuestionList(2);
     getQuestionIntroduce(2);
   }
+
   if (time === "yesterday") {
     const q = query(
       collection(dbService, comments),
@@ -167,13 +169,16 @@ export const getCommentList = async (time) => {
     );
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      const commentObj = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      cmtObjList.push(commentObj);
+      if (typeof doc.data().createdAt !== "string") {
+        const commentObj = {
+          id: doc.id,
+          ...doc.data(),
+        };
+        cmtObjList.push(commentObj);
+      }
     });
   } else if (time === "today") {
+    console.log(comments);
     const q = query(
       collection(dbService, comments),
       orderBy("createdAt", "desc")
@@ -187,7 +192,20 @@ export const getCommentList = async (time) => {
       cmtObjList.push(commentObj);
     });
   } else if (time === "tomorrow") {
+    const q = query(
+      collection(dbService, comments),
+      orderBy("createdAt", "desc")
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const commentObj = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      cmtObjList.push(commentObj);
+    });
   }
+
   const commentList = document.getElementById("comment-list");
   const currentUid = authService.currentUser.uid;
   commentList.innerHTML = "";

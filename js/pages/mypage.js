@@ -26,7 +26,6 @@ export const getMyList = async () => {
       cmtObjList.push(commentObj);
     });
   }
-
   const commnetList = document.getElementById("mypage-list");
   commnetList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
@@ -46,7 +45,7 @@ export const getMyList = async () => {
     ${cmtObj.createdAt.toDate().toLocaleString()}</div></footer>
 
               </div>
-                        <div class="${isOwner ? "updateBtns" : "noDisplay"}">
+        <div class="${isOwner ? "updateBtns" : "noDisplay"}">
                   <div>     
                     <input type="text" value="${
                       cmtObj.plusCounter
@@ -64,7 +63,6 @@ export const getMyList = async () => {
     div.innerHTML = temp_html;
     commnetList.appendChild(div);
   });
-
   console.log(document.querySelectorAll(".hate"));
   document.querySelectorAll(".hate").forEach((el) => {
     if (currentUid === el.name) {
