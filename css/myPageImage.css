@@ -202,8 +202,8 @@
 
   #child_img_4 {
     opacity: 0;
-    /* animation: fadeIn2 2s linear 3.5s 1, rotate 1s linear 5.5s infinite;
-    animation-fill-mode: forwards; */
+    animation: fadeIn2 2s linear 3.5s 1, rotate 1s linear 5.5s infinite;
+    animation-fill-mode: forwards;
     position: absolute;
     left: 980px;
     top: -2px;
