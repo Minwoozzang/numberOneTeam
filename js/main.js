@@ -13,6 +13,12 @@ import {
   commentLike,
   commentHate,
   getQuestionList,
+<<<<<<< Updated upstream
+=======
+  getQuestionIntroduce,
+  showImage,
+  darkMode,
+>>>>>>> Stashed changes
 } from './pages/fanLog.js';
 
 import {
@@ -74,6 +80,15 @@ window.save_list = save_list;
 window.commentLike = commentLike;
 window.commentHate = commentHate;
 window.getQuestionList = getQuestionList;
+<<<<<<< Updated upstream
 // window.update_list = update_list;
 // window.onEditing_list = onEditing_list;
 // window.delete_list = delete_list;
+=======
+window.getQuestionIntroduce = getQuestionIntroduce;
+window.mypageProfileModal = mypageProfileModal;
+window.mypageChangeProfile = mypageChangeProfile;
+window.mypageOnFileChange = mypageOnFileChange;
+window.showImage = showImage;
+window.darkMode = darkMode;
+>>>>>>> Stashed changes

@@ -7,8 +7,13 @@ const routes = {
   profile: "/pages/profile.html",
   mypage: "/pages/mypage.html",
 };
+<<<<<<< Updated upstream
 import { getCommentList } from "./pages/fanLog.js";
 import { getMyList } from "./pages/mypage.js";
+=======
+import { getCommentList, showImage } from './pages/fanLog.js';
+import { getMyList } from './pages/mypage.js';
+>>>>>>> Stashed changes
 
 export const handleLocation = async () => {
   let path = window.location.hash.replace("#", "");
@@ -39,7 +44,12 @@ export const handleLocation = async () => {
     document.querySelector(".profileImage").src =
       authService.currentUser.photoURL ?? "../assets/blankProfile.webp";
 
+<<<<<<< Updated upstream
     getCommentList("today");
+=======
+    getCommentList('today');
+    showImage();
+>>>>>>> Stashed changes
   }
 
   if (path === "mypage") {
