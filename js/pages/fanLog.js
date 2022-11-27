@@ -55,8 +55,6 @@ export const onEditing = (event) => {
   const commentText = cardBody.children[1].children[0].children[0];
   const commentInputP = cardBody.children[1].children[0].children[1];
 
-  console.log(cardBody);
-
   commentText.classList.add('noDisplay');
   commentInputP.classList.add('d-flex');
   commentInputP.classList.remove('noDisplay');
@@ -208,19 +206,6 @@ export const getCommentList = async (time) => {
       };
       cmtObjList.push(commentObj);
     });
-  } else if (time === 'tomorrow') {
-    const q = query(
-      collection(dbService, comments),
-      orderBy('createdAt', 'desc')
-    );
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      const commentObj = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      cmtObjList.push(commentObj);
-    });
   }
 
   const commentList = document.getElementById('comment-list');
@@ -228,6 +213,7 @@ export const getCommentList = async (time) => {
   commentList.innerHTML = '';
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
+
     const temp_html = `
     <div class="card commentCard">
     <div class="card-body">
@@ -288,12 +274,11 @@ export const getCommentList = async (time) => {
     </div>`;
     const div = document.createElement('div');
     div.classList.add('mycards');
+
     div.innerHTML = temp_html;
     commentList.appendChild(div);
   });
-
   document.querySelectorAll('.hate').forEach((el) => {
-    console.log(el);
     if (currentUid === el.name) {
       el.disabled = true;
     }
