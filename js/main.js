@@ -27,8 +27,12 @@ window.addEventListener('hashchange', handleLocation);
 // 모달창 오픈 상태에서 외부 영역 클릭시 모달창 꺼짐
 window.onclick = function (event) {
   const profilePage = document.querySelector('#profilePage');
+  const myProfilePage = document.querySelector('#mypage_profile_page');
   if (event.target === profilePage) {
     profilePage.style.display = 'none';
+  }
+  if (event.target === myProfilePage) {
+    myProfilePage.style.display = 'none';
   }
 };
 

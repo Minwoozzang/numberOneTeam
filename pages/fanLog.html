@@ -76,7 +76,7 @@
 
 <div id="profilePage">
   <section id="profileWrapper">
-    <h2>프로필 관리</h2>
+    <!-- <h2>프로필 관리</h2> -->
     <form id="profileForm" onsubmit="changeProfile(event)">
       <label id="imgLabel" for="imgInput">
         <img id="profileView" src="/assets/blankProfile.webp" />
@@ -86,6 +86,7 @@
           type="file"
           accept="images/*"
         />
+        <div id="camera-icon"><i class="fa-solid fa-camera"></i></div>
       </label>
       <div>
         <input
@@ -96,8 +97,9 @@
         />
       </div>
       <br />
+
       <input id="profileBtn" type="submit" value="프로필 변경" />
-      <button claass="loginBtn" onclick="logout()">로그아웃</button>
+      <button class="loginBtn" onclick="logout()">로그아웃</button>
     </form>
   </section>
 </div>

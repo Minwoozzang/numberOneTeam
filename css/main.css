@@ -33,7 +33,7 @@
   position: sticky;
   top: 0;
   background-color: black;
-  z-index: 0;
+  z-index: 999;
 }
 
 .main-btn,
@@ -49,6 +49,7 @@
   margin-left: var(--spacing-medium);
   padding: 5px;
   line-height: 35px;
+  transition: all 200ms ease-in-out;
 }
 
 .main-btn:hover,
