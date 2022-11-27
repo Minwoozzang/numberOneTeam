@@ -96,7 +96,7 @@ header img {
 
 /* 이미지 반응형  */
 
-@media (min-width: 1450px) {
+@media (min-width: 1200px) {
   header {
     height: 550px;
   }
