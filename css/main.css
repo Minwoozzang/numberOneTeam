@@ -47,8 +47,7 @@
 
 /* 메인 */
 
-
-#main-text{
+#main-text {
   color: white;
 }
 
@@ -56,7 +55,6 @@
   width: 40%;
   height: 100%;
 }
-
 
 .main {
   width: 100%;
@@ -89,14 +87,13 @@
   border: 0;
   border-radius: 20px;
 
-  font-size:  var(--font-small);
+  font-size: var(--font-small);
   margin-left: 2%;
 }
 
 .main-button button:hover {
   background-color: var(--blue-color);
 }
-
 
 #question-list {
   width: 95%;
@@ -115,7 +112,6 @@
 .question-Card {
   width: 93%;
   height: 90%;
-  
 }
 
 .card-title {
@@ -123,11 +119,10 @@
   height: 25%;
 }
 
-
-.card-title input{
+.card-title input {
   width: 100%;
   height: 100%;
-  
+
   border-radius: 12px;
   background-color: black;
   color: white;
@@ -137,7 +132,7 @@
 
 .card-text {
   width: 100%;
-  height:70%;
+  height: 70%;
 }
 
 .card-text input {
@@ -152,7 +147,6 @@
 
   font-size: var(--font-regular);
 }
-
 
 .main-two {
   width: 53.6%;
@@ -173,9 +167,7 @@
   animation-iteration-count: infinite;
 
   z-index: 1;
-
 }
-
 
 @keyframes fadeIn {
   to {
@@ -195,15 +187,14 @@
   width: 76%;
   height: 100%;
   background-color: whitesmoke;
-  box-shadow:5px 5px 10px rgb(170, 170, 170);
+  box-shadow: 5px 5px 10px rgb(170, 170, 170);
   border-radius: 15px;
   margin-left: 12%;
-  
 }
 
-.form-write-title{
+.form-write-title {
   text-align: center;
-  
+
   font-size: 1.5em;
 }
 
@@ -220,10 +211,8 @@
   margin-left: 1.5%;
 }
 
-
-
 .write-comment__textbox input {
-  width:81%;
+  width: 81%;
   height: 35%;
   display: inline-block;
 
@@ -232,7 +221,7 @@
   border-top: 0;
   border-right: 0;
   border-color: #999999;
-  outline: none ;
+  outline: none;
   margin-left: 2%;
 }
 
@@ -253,15 +242,9 @@
   background-color: #0d99ff;
 }
 
-
-
-
-
-
 .form-write-nickname {
   display: none;
 }
-
 
 .list-comment {
   width: 80%;
@@ -350,7 +333,7 @@
   display: flex;
 }
 
-.card-body .comment_like_box input[type='text'] {
+.card-body .comment_like_box input[type="text"] {
   background-color: transparent;
   width: 30px;
   text-align: center;
@@ -384,7 +367,6 @@
 .card-body .updateBtns button:nth-child(1) {
   margin-right: 10px;
 }
-
 
 .mycards {
   width: 82%;
