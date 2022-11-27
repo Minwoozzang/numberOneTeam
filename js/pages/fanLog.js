@@ -227,13 +227,17 @@ export const getCommentList = async (time) => {
       .toLocaleString()}</div></footer>
       <div>
   <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-  <button onclick="commentLike(event)" class="hate ${cmtObj.likeButton}" id="${
-      cmtObj.id
-    }" name="${cmtObj.creatorId}">좋아요</button>
+  <input type="image" onclick="commentLike(event)" class="hate ${
+    cmtObj.likeButton
+  }" id="${cmtObj.id}" name="${
+      cmtObj.creatorId
+    }" src="/assets/img/likeIcon.png" />
   <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
-  <button onclick="commentHate(event)" class="hate ${cmtObj.hateButton}"" id="${
-      cmtObj.id
-    }" name="${cmtObj.creatorId}">싫어요</button>
+  <input type="image" onclick="commentHate(event)" class="hate ${
+    cmtObj.hateButton
+  }" id="${cmtObj.id}" name="${
+      cmtObj.creatorId
+    }" src="/assets/img/hateIcon.png" />
 </div>
               </div>
               <div class="${isOwner ? "updateBtns" : "noDisplay"}">
@@ -251,6 +255,7 @@ export const getCommentList = async (time) => {
   });
 
   document.querySelectorAll(".hate").forEach((el) => {
+    console.log(el);
     if (currentUid === el.name) {
       el.disabled = true;
     }
