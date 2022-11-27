@@ -1,6 +1,7 @@
 header {
   width: 80vw;
-  height: 350px;
+  height: 400px;
+  /* height: 300px; */
   margin: auto;
   display: flex;
   align-self: center;
@@ -9,67 +10,59 @@ header {
 }
 
 header img {
-  width: 250px;
+  width: 300px;
 }
-
 #child_img_1 {
   opacity: 0;
-  height: 300px;
-  width: 400px;
+  height: 350px;
+  width: 450px;
   animation: fadeIn 2s linear;
   animation-delay: 0.5s;
   animation-fill-mode: forwards;
   position: absolute;
-  left: 100px;
-  top: 100px;
+  left: 10%;
+  top: 19%;
   z-index: 4;
 }
-
 #child_img_1:hover {
   transform: scale(1.1);
 }
-
 #child_img_2 {
   opacity: 0;
   animation: fadeIn2 2s linear;
   animation-delay: 1.5s;
   animation-fill-mode: forwards;
   position: absolute;
-  left: 350px;
-  top: 35px;
+  left: 32%;
+  top: -6%;
   z-index: 1;
 }
-
 #child_img_2:hover {
   transform: scale(1.1);
 }
-
 #child_img_3 {
   opacity: 0;
-  width: 300px;
-  height: 400px;
+  width: 350px;
+  height: 450px;
   animation: fadeIn 2s linear;
   animation-delay: 2.5s;
   animation-fill-mode: forwards;
   position: absolute;
-  left: 520px;
-  top: 47px;
+  left: 47%;
+  top: 5%;
   z-index: 2;
   transform: rotate(-45deg);
 }
-
 #child_img_3:hover {
   transform: scale(1.1);
 }
-
 #child_img_4 {
   opacity: 0;
   animation: fadeIn2 2s linear;
   animation-delay: 3.5s;
   animation-fill-mode: forwards;
   position: absolute;
-  left: 700px;
-  top: 55px;
+  left: 63%;
   z-index: 3;
 }
 
@@ -96,5 +89,73 @@ header img {
   to {
     transform: none;
     opacity: 1;
+  }
+}
+
+/* 이미지 반응형  */
+
+@media (min-width: 1450px) {
+  header {
+    height: 550px;
+  }
+  header img {
+    width: 400px;
+  }
+  #child_img_1 {
+    opacity: 0;
+    width: 550px;
+    height: 450px;
+    animation: fadeIn 2s linear;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    z-index: 4;
+  }
+  #child_img_1:hover {
+    transform: scale(1.1);
+  }
+  #child_img_2 {
+    opacity: 0;
+    animation: fadeIn2 2s linear;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 450px;
+    top: -31px;
+    z-index: 1;
+  }
+  #child_img_2:hover {
+    transform: scale(1.1);
+  }
+  #child_img_3 {
+    opacity: 0;
+    width: 450px;
+    height: 550px;
+    animation: fadeIn 2s linear;
+    animation-delay: 2.5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 700px;
+    top: 62px;
+    z-index: 2;
+    transform: rotate(-45deg);
+  }
+  #child_img_3:hover {
+    transform: scale(1.1);
+  }
+  #child_img_4 {
+    opacity: 0;
+    animation: fadeIn2 2s linear;
+    animation-delay: 3.5s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 980px;
+    top: -2px;
+    z-index: 3;
+  }
+  #child_img_4:hover {
+    transform: scale(1.1);
   }
 }

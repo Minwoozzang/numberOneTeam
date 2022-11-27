@@ -1,24 +1,23 @@
 <!-- 네비게이션  -->
 <div class="mypage-nav">
+  <a href="#fanLog"><button class="main-btn" id="mypage">메인페이지</button></a>
 
-  <a href="#fanLog"><button class="main-btn" id="mypage">마이페이지</button></a>
-
-<span class="nav-title">아하! 지식</span>
-<div class="nav-profile">
-  <img
-    class="profile-btn profileImg"
-    src="../assets/blankProfile.webp"
-    onclick="mypageProfileModal()"
-  />
-</div>
+  <span class="nav-title">아하! 지식</span>
+  <div class="nav-profile">
+    <img
+      class="profile-btn profileImg"
+      src="../assets/blankProfile.webp"
+      onclick="mypageProfileModal()"
+    />
+  </div>
 </div>
 
 <!-- 상단 이미지 영역 -->
 <header>
-<img class="child_img" id="child_img_1" src="/assets/img/04.png" />
-<img class="child_img" id="child_img_2" src="/assets/img/05.png" />
-<img class="child_img" id="child_img_3" src="/assets/img/02.png" />
-<img class="child_img" id="child_img_4" src="/assets/img/07.png" />
+  <img class="child_img" id="child_img_1" src="/assets/img/04.png" />
+  <img class="child_img" id="child_img_2" src="/assets/img/05.png" />
+  <img class="child_img" id="child_img_3" src="/assets/img/02.png" />
+  <img class="child_img" id="child_img_4" src="/assets/img/07.png" />
 </header>
 <!-- 
   <div class="nav-profile">
@@ -30,8 +29,9 @@
     />
   </div> -->
 
-<main>
-  <div class="mypage-text">내가 작성한 댓글 리스트</div>
+<section class="title-and-comment">
+  <div class="title">나의 활동 게시글</div>
+  <!-- 나의 닉네임, 프로필  -->
   <div class="form-write-comment">
     <div class="form-write-nickname">
       <img
@@ -45,33 +45,34 @@
   </div>
 
   <div id="mypage-list"></div>
-</main>
-</div>
-
-<div id="mypage_profile_page">
-<section id="mypage_profileWrapper">
-  <h2>프로필 관리</h2>
-  <form id="mypage_profileForm" onsubmit="mypageChangeProfile(event)">
-    <label id="mypage_imgLabel" for="mypage_imgInput">
-      <img id="mypage_profileView" src="/assets/blankProfile.webp" />
-      <input
-        onchange="mypageOnFileChange(event)"
-        id="mypage_imgInput"
-        type="file"
-        accept="images/*"
-      />
-    </label>
-    <div>
-      <input
-        id="profileNickname"
-        type="text"
-        placeholder="현재 닉네임"
-        value=""
-      />
-    </div>
-    <br />
-    <input id="mypage_profileBtn" type="submit" value="프로필 변경" />
-    <button claass="loginBtn" onclick="logout()">로그아웃</button>
-  </form>
 </section>
 
+<!-- 프로필 변경 모달창 -->
+
+<div id="mypage_profile_page">
+  <section id="mypage_profileWrapper">
+    <h2>프로필 관리</h2>
+    <form id="mypage_profileForm" onsubmit="mypageChangeProfile(event)">
+      <label id="mypage_imgLabel" for="mypage_imgInput">
+        <img id="mypage_profileView" src="/assets/blankProfile.webp" />
+        <input
+          onchange="mypageOnFileChange(event)"
+          id="mypage_imgInput"
+          type="file"
+          accept="images/*"
+        />
+      </label>
+      <div>
+        <input
+          id="profileNickname"
+          type="text"
+          placeholder="현재 닉네임"
+          value=""
+        />
+      </div>
+      <br />
+      <input id="mypage_profileBtn" type="submit" value="프로필 변경" />
+      <button claass="loginBtn" onclick="logout()">로그아웃</button>
+    </form>
+  </section>
+</div>

@@ -6,7 +6,6 @@ import {
   where,
 } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js';
 import { dbService, authService } from '../firebase.js';
-
 export const getMyList = async () => {
   let cmtObjList = [];
   const currentUid = authService.currentUser.uid;
@@ -30,32 +29,59 @@ export const getMyList = async () => {
   commnetList.innerHTML = '';
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
-    const temp_html = `<div class="card commentCard">
-          <div class="card-body">
-          <div>${cmtObj.content}<div>
-          <div>${cmtObj.intro}</div>
-              <div class="blockquote">
-                  <p class="commentText">${cmtObj.text}</p>
-                  <p id="${cmtObj.id}" class="noDisplay"></p>
-                  <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${
-                    cmtObj.profileImg ?? '/assets/blankProfile.webp'
-                  }" alt="profileImg" /><span>${
-      cmtObj.nickname ?? '닉네임 없음'
-    }</span></div><div class="cmtAt">
-    ${cmtObj.createdAt.toDate().toLocaleString()}</div></footer>
+    const temp_html = `
+    <div class="card commentCard">
+      <div class="card-body">
+        <div class="title-text">${cmtObj.content}</div>
+        <div>
+          <div id="card-text">${cmtObj.intro}</div>
+          
+          <p class="commentText">${cmtObj.text}</p>
+          <p id="${cmtObj.id}" class="noDisplay"></p>
+
+          <div class="profileAndName">
+            BY&nbsp;&nbsp;<img
+              class="cmtImg"
+              width="50px"
+              height="50px"
+              src="${cmtObj.profileImg ?? '/assets/blankProfile.webp'}"
+              alt="profileImg"
+            /><span>${cmtObj.nickname ?? '닉네임 없음'}</span>
+          </div>
+          <div class="card-footer">
+            <div class="cmtAt">${cmtObj.createdAt
+              .toDate()
+              .toLocaleString()}</div>
+
+            <div class="${isOwner ? 'updateBtns' : 'noDisplay'}">
+              <div class="likeAndhate">
+                <div class="like">
+                  <img src="../assets/img/likeIcon.png" alt="" />
+                  <input
+                    type="text"
+                    value="${cmtObj.plusCounter}"
+                    id="input1${cmtObj.id}"
+                    readonly
+                    onfocus="this.blur()"
+                  />
+                </div>
+                <div class="hate">
+                  <img src="../assets/img/hateIcon.png" alt="" />
+                  <input
+                    type="text"
+                    value="${cmtObj.minusCounter}"
+                    id="input2${cmtObj.id}"
+                    readonly
+                    onfocus="this.blur()"
+                  />
+                </div>
               </div>
-                        <div class="${isOwner ? 'updateBtns' : 'noDisplay'}">
-                  <div>     
-                    <input type="text" value="${
-                      cmtObj.plusCounter
-                    }" id="input1${cmtObj.id}" />
-                    <input type="text" value="${
-                      cmtObj.minusCounter
-                    }" id="input2${cmtObj.id}" />   
-                  </div>   
-                </div>            
-              </div>
-     </div>`;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
     const div = document.createElement('div');
     div.classList.add('mycards');
     div.innerHTML = temp_html;

@@ -33,12 +33,13 @@
   position: sticky;
   top: 0;
   background-color: black;
+  z-index: 0;
 }
 
 .main-btn,
 .mypage-btn {
-  width: 95px;
-  height: 35px;
+  width: 110px;
+  /* height: 40px; */
   background-color: transparent;
   color: var(--white-color);
   border: 1.4px solid var(--white-color);
@@ -46,6 +47,8 @@
   font-size: var(--font-small);
   font-weight: 600;
   margin-left: var(--spacing-medium);
+  padding: 5px;
+  line-height: 35px;
 }
 
 .main-btn:hover,
@@ -109,22 +112,22 @@
   color: #0d99ff;
 }
 
-.form-write-comment {
+/* .form-write-comment {
   width: 82%;
 
   margin-left: 9%;
-}
+} */
 
-.form-write-comment .write-comment {
+/* .form-write-comment .write-comment {
   font-size: 1.5em;
-}
+} */
 
 .form-write-nickname {
-  margin-top: 2%;
-  margin-bottom: 2%;
-
-  display: flex;
-  align-items: center;
+  /* margin-top: 2%; */
+  /* margin-bottom: 2%; */
+  /* display: flex; */
+  /* align-items: center; */
+  display: none;
 }
 
 .write-comment__textbox {

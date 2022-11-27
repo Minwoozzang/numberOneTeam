@@ -15,24 +15,13 @@ let comments = '';
 
 export const save_comment = async (event) => {
   event.preventDefault();
-  // <<<<<<< HEAD
-  //   console.log(selectedDate);
-
-  //   const commentInput = document.getElementById('commentId');
-  //   const commentIntro = document.getElementById('commentIntroduceId');
-  //   const comment = document.getElementById('comment');
-  //   if (selectedDate === 'yesterday') comments = 'comment1';
-  //   else if (selectedDate === 'today') comments = 'comment2';
-  //   else comments = 'comment3';
-  // =======
-
   const commentInput = document.getElementById('commentId');
   const commentIntro = document.getElementById('commentIntroduceId');
   const comment = document.getElementById('comment');
   if (selectedDate === 'yesterday') comments = 'comment1';
   else if (selectedDate === 'today') comments = 'comment2';
   else comments = 'comment3';
-  // >>>>>>> 757ecc7deca7399517d81a677e79f2ac694a55a1
+
   const { uid, photoURL, displayName } = authService.currentUser;
   try {
     await addDoc(collection(dbService, comments), {
@@ -202,28 +191,21 @@ export const getCommentList = async (time) => {
       };
       cmtObjList.push(commentObj);
     });
-    // <<<<<<< HEAD
-    //   } else if (time === 'tomorrow') {
-    //     const q = query(
-    //       collection(dbService, comments),
-    //       orderBy('createdAt', 'desc')
-    //     );
-    //     const querySnapshot = await getDocs(q);
-    //     querySnapshot.forEach((doc) => {
-    //       const commentObj = {
-    //         id: doc.id,
-    //         ...doc.data(),
-    //       };
-    //       cmtObjList.push(commentObj);
-    //     });
-    //   }
-    //   const commnetList = document.getElementById('comment-list');
-    //   const currentUid = authService.currentUser.uid;
-
-    //   commnetList.innerHTML = '';
-    // =======
   } else if (time === 'tomorrow') {
+    const q = query(
+      collection(dbService, comments),
+      orderBy('createdAt', 'desc')
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      const commentObj = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      cmtObjList.push(commentObj);
+    });
   }
+
   const commentList = document.getElementById('comment-list');
   const currentUid = authService.currentUser.uid;
   commentList.innerHTML = '';
@@ -244,15 +226,18 @@ export const getCommentList = async (time) => {
       .toDate()
       .toLocaleString()}</div></footer>
       <div>
-
   <input type="text" value="${cmtObj.plusCounter}" id="input1${cmtObj.id}" />
-  <button onclick="commentLike(event)" class="hate ${cmtObj.likeButton}" id="${
-      cmtObj.id
-    }" name="${cmtObj.creatorId}">좋아요</button>
+  <input type="image" onclick="commentLike(event)" class="hate ${
+    cmtObj.likeButton
+  }" id="${cmtObj.id}" name="${
+      cmtObj.creatorId
+    }" src="/assets/img/likeIcon.png" />
   <input type="text" value="${cmtObj.minusCounter}" id="input2${cmtObj.id}" />
-  <button onclick="commentHate(event)" class="hate ${cmtObj.hateButton}"" id="${
-      cmtObj.id
-    }" name="${cmtObj.creatorId}">싫어요</button>
+  <input type="image" onclick="commentHate(event)" class="hate ${
+    cmtObj.hateButton
+  }" id="${cmtObj.id}" name="${
+      cmtObj.creatorId
+    }" src="/assets/img/hateIcon.png" />
 </div>
               </div>
               <div class="${isOwner ? 'updateBtns' : 'noDisplay'}">
@@ -267,10 +252,10 @@ export const getCommentList = async (time) => {
     div.classList.add('mycards');
     div.innerHTML = temp_html;
     commentList.appendChild(div);
-    console.log(commentList);
   });
 
   document.querySelectorAll('.hate').forEach((el) => {
+    console.log(el);
     if (currentUid === el.name) {
       el.disabled = true;
     }
@@ -291,7 +276,6 @@ export const getHomePageList = (target) => {
     </span>
   </div>
 </div>
-
 <div id="left-right-page">
   <button onclick="beforePage()" type="button" id="left-page">
     <i class="fa-solid fa-chevron-left"></i>
@@ -300,7 +284,6 @@ export const getHomePageList = (target) => {
     <i class="fa-solid fa-chevron-right"></i>
   </button>
 </div>
-
 <div class="form-write-comment">
   <div class="form-write-nickname">
     <img
@@ -311,7 +294,6 @@ export const getHomePageList = (target) => {
     />
     <span id="nickname">${displayName ?? '닉네임 없음'}</span>
   </div>
-
   <div class="write-comment__textbox">
     <input
       type="text"
