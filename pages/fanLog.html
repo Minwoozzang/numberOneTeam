@@ -6,6 +6,10 @@
   >
   <span class="nav-title">아하! 지식</span>
   <div class="nav-profile">
+<<<<<<< Updated upstream
+=======
+    <input type="button" class="darkMode" value="dark" onclick="darkMode()"/>
+>>>>>>> Stashed changes
     <span id="nick-name" class="nickname"></span>
     <img
       class="profile-btn profileImg"
@@ -14,6 +18,7 @@
     />
   </div>
 </div>
+<<<<<<< Updated upstream
 <div class="main-button">
   <button onclick="getHomePageList(this)">어제</button>
   <button onclick="getHomePageList(this)">오늘</button>
@@ -32,8 +37,46 @@
   <div class="card quesintro">
     <div class="card-intro">
       <input type="text" id="commentIntroduceId" />
+=======
+<!-- 메인 -->
+<main class="main">
+  <div class="main-one">
+    <div class="main-button">
+      <div class="main-button__btn">
+        <button onclick="getHomePageList(this)">어제</button>
+        <button onclick="getHomePageList(this)">오늘</button>
+        <button onclick="getHomePageList(this)">내일</button>
+      </div>
     </div>
+
+    <div id="question-list">
+      <div class="question-Card">
+          <div class="card-title">
+              <input type="text" id="commentId" readonly />
+          </div>
+          <div class="card-text">
+              <input type="text" id="commentIntroduceId" readonly />
+          </div>
+      </div>
+    </div>
+
+    <div id="question-introduce">
+      <div class="card quesintro">
+        <div class="card-intro">
+        </div>
+      </div>
+>>>>>>> Stashed changes
+    </div>
+  </div> 
+  
+  <div class="main-two">
+    <img 
+      class="jammin-one"
+      src="/assets/imgMain/1.png"/>
+
+  </div> 
   </div>
+<<<<<<< Updated upstream
 </div>
 
 <div class="wrap">
@@ -63,7 +106,45 @@
       >
         V
       </button>
+=======
+</main>
+
+<!-- 댓글등록 -->
+
+<div class="comment-and-list-box">
+  <div class="wrap">
+
+    <div class="form-write-comment">
+      <div class="form-write-title">
+        <span>댓글 작성하기</span>
+      </div>
+
+      <div class="write-comment__textbox">
+        <img
+          class="profileImage"
+          id="profileImg"
+          width="50em"
+          height="50em"
+          src="/assets/blankProfile.webp"
+        />
+        <span id="nickname" class="nickname">닉네임</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="댓글을 입력해주세요"
+          id="comment"
+        />
+        <button
+          onclick="save_comment(event)"
+          type="button"
+          class="write-comment__btn"
+        >
+        V
+        </button>
+      </div>
+>>>>>>> Stashed changes
     </div>
+
   </div>
 </div>
 
@@ -72,7 +153,11 @@
 
     <div id="comment-list"></div>
   </div>
+<<<<<<< Updated upstream
 </div>
+=======
+</div> 
+>>>>>>> Stashed changes
 
 <!-- 프로필 모달창 -->
 
