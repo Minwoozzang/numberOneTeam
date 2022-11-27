@@ -54,6 +54,7 @@
 .main-one {
   width: 40%;
   height: 100%;
+  margin-top: 30px;
 }
 
 .main {
@@ -66,7 +67,7 @@
 
 .main-button {
   width: 45%;
-  height: 20%;
+  height: 15%;
   display: flex;
   align-items: center;
 
@@ -74,19 +75,18 @@
 }
 
 .main-button__btn {
-  width: 100%;
-  height: 35%;
+  width: 250px;
+  height: 30px;
 }
 
 .main-button button {
-  width: 25%;
+  width: 60px;
   height: 100%;
   background-color: black;
   color: white;
-
+  text-align: center;
   border: 0;
   border-radius: 20px;
-
   font-size: var(--font-small);
   margin-left: 2%;
 }
@@ -97,12 +97,12 @@
 
 #question-list {
   width: 95%;
-  height: 70%;
+  height: 300px;
   background-color: white;
   border-radius: 10px;
 
   margin-left: 10%;
-  margin-top: 1%;
+  margin-top: 5px;
 
   display: flex;
   justify-content: center;
@@ -114,38 +114,37 @@
   height: 90%;
 }
 
-.card-title {
+.question-Card .card-title {
   width: 100%;
-  height: 25%;
+  height: 30%;
 }
 
-.card-title input {
+.question-Card .card-title #commentId {
+  font-size: var(--font-medium);
+  padding-left: 15px;
   width: 100%;
   height: 100%;
-
-  border-radius: 12px;
   background-color: black;
   color: white;
-
-  font-size: var(--font-small);
+  border-radius: 8px;
+  line-height: 40px;
 }
 
-.card-text {
+
+.question-Card .card-text {
   width: 100%;
   height: 70%;
 }
 
-.card-text input {
+.question-Card .card-text #commentIntroduceId {
   width: 100%;
-  height: 100%;
-
-  border-radius: 15px;
+  height: 80%;
+  border-radius: 8px;
   background-color: black;
   color: white;
-
-  margin-top: 3%;
-
   font-size: var(--font-regular);
+  margin-top: 3%;
+  padding-left: 20px;
 }
 
 .main-two {
@@ -184,25 +183,27 @@
 }
 
 .form-write-comment {
-  width: 76%;
+  width: 70%;
   height: 100%;
   background-color: whitesmoke;
-  box-shadow: 5px 5px 10px rgb(170, 170, 170);
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
-  margin-left: 12%;
+  margin: 0 auto;
+  /* margin-left: 12%; */
+  z-index: 999;
+  transform: translateY(-30px);
+  padding-top: 30px;
+  /* pad: 20px; */
 }
 
 .form-write-title {
   text-align: center;
-
-  font-size: 1.5em;
+  font-size: var(--font-regular);
+  font-weight: 500;
 }
 
 .write-comment__textbox {
   height: 15vh;
-
-  margin-top: 5%;
-
   display: flex;
   align-items: center;
 }
@@ -249,7 +250,6 @@
 .list-comment {
   width: 80%;
   margin: 0 auto;
-  /* margin-bottom: 50px; */
 }
 
 .list-comment .list-title {
@@ -268,8 +268,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 20px;
-  /* width: 80%; */
-  /* background-color: #e3e3e3; */
+
   border-radius: 15px;
   background-color: var(--white-color);
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
@@ -333,7 +332,7 @@
   display: flex;
 }
 
-.card-body .comment_like_box input[type="text"] {
+.card-body .comment_like_box input[type='text'] {
   background-color: transparent;
   width: 30px;
   text-align: center;
@@ -375,4 +374,52 @@
 
 .noDisplay {
   display: none;
+}
+
+/* 반응형 */
+
+@media screen and (max-width: 768px) {
+  .form-write-comment {
+    display: flex;
+    flex-direction: column;
+    height: 260px;
+  }
+
+  .form-write-comment .write-comment__textbox {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-write-comment .profileImage {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .form-write-comment .write-comment__textbox .write-comment__btn {
+    width: 20%;
+    height: 50px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .mycards .card.commentCard .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card.commentCard .card-body .comment_image {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .card.commentCard .card-body .comment_box .comment_name_at {
+    margin-bottom: 20px;
+  }
+
+  .card-body .comment_box .comment_name_at .comment_name {
+    margin-right: 15px;
+  }
 }
