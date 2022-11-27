@@ -380,3 +380,40 @@ export const getQuestionIntroduce = async (index) => {
 
   Input.value = qstObjList[index].intro;
 };
+
+// 메인페이지 이미지 교체
+
+export const showImage = async () => {
+  setTimeout(() => {
+    let img = document.querySelector(".jammin-one");
+    let i = 1;
+
+    img.addEventListener(
+      "animationiteration",
+      () => {
+        img.setAttribute("src", "/assets/imgMain/" + ((i % 4) + 1) + ".png");
+        console.log("종료");
+        i++;
+      },
+      false
+    );
+  }, 1000);
+};
+
+// 다크모드
+
+export const darkMode = async () => {
+
+  const body = document.querySelector("body");
+  const btn = document.querySelector(".darkMode");
+
+  if(btn.value === "dark"){
+    body.style.backgroundColor = "black";
+    body.style.color = "white";
+    btn.value = "light";
+  } else {
+    body.style.backgroundColor = "white";
+    body.style.color = "black";
+    btn.value = "dark";
+  }
+} 

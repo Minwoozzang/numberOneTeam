@@ -6,6 +6,7 @@
   >
   <span class="nav-title">아하! 지식</span>
   <div class="nav-profile">
+    <input type="button" class="darkMode" value="dark" onclick="darkMode()"/>
     <span id="nick-name" class="nickname"></span>
     <img
       class="profile-btn profileImg"
@@ -14,65 +15,87 @@
     />
   </div>
 </div>
-<div class="main-button">
-  <button onclick="getHomePageList(this)">어제</button>
-  <button onclick="getHomePageList(this)">오늘</button>
-  <button onclick="getHomePageList(this)">내일</button>
-</div>
-
-<div id="question-list">
-  <div class="card questionCard">
-    <div class="card-body">
-      <input type="text" id="commentId" />
+<!-- 메인 -->
+<main class="main">
+  <div class="main-one">
+    <div class="main-button">
+      <div class="main-button__btn">
+        <button onclick="getHomePageList(this)">어제</button>
+        <button onclick="getHomePageList(this)">오늘</button>
+        <button onclick="getHomePageList(this)">내일</button>
+      </div>
     </div>
+
+    <div id="question-list">
+      <div class="question-Card">
+          <div class="card-title">
+              <input type="text" id="commentId" readonly />
+          </div>
+          <div class="card-text">
+              <input type="text" id="commentIntroduceId" readonly />
+          </div>
+      </div>
+    </div>
+
+    <div id="question-introduce">
+      <div class="card quesintro">
+        <div class="card-intro">
+        </div>
+      </div>
+    </div>
+  </div> 
+  
+  <div class="main-two">
+    <img 
+      class="jammin-one"
+      src="/assets/imgMain/1.png"/>
+
+  </div> 
   </div>
-</div>
+</main>
 
-<div id="question-introduce">
-  <div class="card quesintro">
-    <div class="card-intro">
-      <input type="text" id="commentIntroduceId" />
-    </div>
-  </div>
-</div>
+<!-- 댓글등록 -->
+<div class="comment-and-list-box">
+  <div class="wrap">
 
-<div class="wrap">
-  <div class="form-write-comment">
-    <div class="form-write-nickname">
-      <img
-        class="profileImage"
-        id="profileImg"
-        width="50em"
-        height="50em"
-        src="/assets/blankProfile.webp"
-      />
-      <span id="nickname" class="nickname">닉네임</span>
-    </div>
+    <div class="form-write-comment">
+      <div class="form-write-title">
+        <span>댓글 등록</span>
+      </div>
 
-    <div class="write-comment__textbox">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="댓글을 입력해주세요..."
-        id="comment"
-      />
-      <button
-        onclick="save_comment(event)"
-        type="button"
-        class="write-comment__btn"
-      >
+      <div class="write-comment__textbox">
+        <img
+          class="profileImage"
+          id="profileImg"
+          width="50em"
+          height="50em"
+          src="/assets/blankProfile.webp"
+        />
+        <span id="nickname" class="nickname">닉네임</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="댓글을 입력해주세요"
+          id="comment"
+        />
+        <button
+          onclick="save_comment(event)"
+          type="button"
+          class="write-comment__btn"
+        >
         V
-      </button>
+        </button>
+      </div>
     </div>
+
   </div>
-</div>
 
   <div class="list-comment">
     <div class="list-title">댓글 리스트</div>
 
     <div id="comment-list"></div>
   </div>
-</div>
+</div> 
 
 <!-- 프로필 모달창 -->
 

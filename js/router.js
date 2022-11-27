@@ -7,7 +7,7 @@ const routes = {
   profile: '/pages/profile.html',
   mypage: '/pages/mypage.html',
 };
-import { getCommentList } from './pages/fanLog.js';
+import { getCommentList, showImage } from './pages/fanLog.js';
 import { getMyList } from './pages/mypage.js';
 
 export const handleLocation = async () => {
@@ -40,6 +40,7 @@ export const handleLocation = async () => {
       authService.currentUser.photoURL ?? '../assets/blankProfile.webp';
 
     getCommentList('today');
+    showImage();
   }
 
   if (path === 'mypage') {

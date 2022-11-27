@@ -14,6 +14,8 @@ import {
   commentHate,
   getQuestionList,
   getQuestionIntroduce,
+  showImage,
+  darkMode,
 } from './pages/fanLog.js';
 import {
   mypageProfileModal,
@@ -80,3 +82,5 @@ window.getQuestionIntroduce = getQuestionIntroduce;
 window.mypageProfileModal = mypageProfileModal;
 window.mypageChangeProfile = mypageChangeProfile;
 window.mypageOnFileChange = mypageOnFileChange;
+window.showImage = showImage;
+window.darkMode = darkMode;
