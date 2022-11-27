@@ -210,11 +210,12 @@ export const getCommentList = async (time) => {
   const currentUid = authService.currentUser.uid;
   commentList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
+    console.log(cmtObj.creatorId);
     const isOwner = currentUid === cmtObj.creatorId;
     const temp_html = `<div class="card commentCard">
           <div class="card-body">
               <div class="blockquote">
-                  <p class="commentText">${cmtObj.text}</p>
+              <p class="commentText">${cmtObj.text}</p>
                   <p id="${
                     cmtObj.id
                   }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
@@ -253,9 +254,7 @@ export const getCommentList = async (time) => {
     div.innerHTML = temp_html;
     commentList.appendChild(div);
   });
-
   document.querySelectorAll(".hate").forEach((el) => {
-    console.log(el);
     if (currentUid === el.name) {
       el.disabled = true;
     }

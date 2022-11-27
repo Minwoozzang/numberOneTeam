@@ -18,15 +18,11 @@ header img {
   height: 350px;
   animation: fadeIn 2s linear;
   animation-delay: 0.5s;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
   position: absolute;
   left: 120px;
   top: 60px;
   z-index: 4;
-}
-
-#child_img_1:hover {
-  transform: scale(1.1);
 }
 
 #child_img_2 {
@@ -38,10 +34,6 @@ header img {
   left: 410px;
   top: -27px;
   z-index: 1;
-}
-
-#child_img_2:hover {
-  transform: scale(1.1);
 }
 
 #child_img_3 {
@@ -58,10 +50,6 @@ header img {
   transform: rotate(-45deg);
 }
 
-#child_img_3:hover {
-  transform: scale(1.1);
-}
-
 #child_img_4 {
   opacity: 0;
   animation: fadeIn2 2s linear;
@@ -71,10 +59,6 @@ header img {
   left: 830px;
   top: -5px;
   z-index: 3;
-}
-
-#child_img_4:hover {
-  transform: scale(1.1);
 }
 
 @keyframes fadeIn {
