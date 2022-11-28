@@ -1,0 +1,125 @@
+<!-- 네비게이션 -->
+
+<div class="main-nav">
+  <a href="#mypage"
+    ><button class="mypage-btn" id="mypage">마이페이지</button></a
+  >
+  <span class="nav-title">아하! 지식</span>
+  <div class="nav-profile">
+    <!-- <input type="button" class="darkMode" value="dark" onclick="darkMode()" /> -->
+    <span id="nick-name" class="nickname"></span>
+    <img
+      class="profile-btn profileImg"
+      src="../assets/blankProfile.webp"
+      onclick="profileModal()"
+    />
+    
+  </div>
+</div>
+<!-- 메인 -->
+<main class="main">
+  <div class="main-one">
+    <div class="main-button">
+      <div class="main-button__btn">
+        <button onclick="getHomePageList(this)">어제</button>
+        <button onclick="getHomePageList(this)">오늘</button>
+        <button onclick="getHomePageList(this)">내일</button>
+      </div>
+    </div>
+
+    <div id="question-list">
+      <div class="question-Card">
+        <div class="card-title">
+          
+          <textarea type="text" id="commentId" readonly /></textarea>
+        </div>
+        <div class="card-text">
+          <textarea type="text" id="commentIntroduceId" readonly /></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div id="question-introduce">
+      <div class="card quesintro">
+        <div class="card-intro"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-two">
+    <img class="jammin-one" src="/assets/imgMain/1.png" />
+  </div>
+</main>
+
+<!-- 댓글등록 -->
+<div class="comment-and-list-box">
+  <div class="wrap">
+    <div class="form-write-comment">
+      <div class="form-write-title">
+        <span>댓글 작성하기</span>
+      </div>
+
+      <div class="write-comment__textbox">
+        <img
+          class="profileImage"
+          id="profileImg"
+          width="50em"
+          height="50em"
+          src="/assets/blankProfile.webp"
+        />
+        <span id="nickname" class="nickname">닉네임</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="댓글을 입력해주세요"
+          id="comment"
+        />
+        <button
+          onclick="save_comment(event)"
+          type="button"
+          class="write-comment__btn"
+        >
+        ✔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-comment">
+    <div class="list-title">댓글 리스트</div>
+
+    <div id="comment-list"></div>
+  </div>
+</div>
+
+<!-- 프로필 모달창 -->
+
+<div id="profilePage">
+  <section id="profileWrapper">
+    <!-- <h2>프로필 관리</h2> -->
+    <form id="profileForm" onsubmit="changeProfile(event)">
+      <label id="imgLabel" for="imgInput">
+        <img id="profileView" src="/assets/blankProfile.webp" />
+        <input
+          onchange="onFileChange(event)"
+          id="imgInput"
+          type="file"
+          accept="images/*"
+        />
+        <div id="camera-icon"><i class="fa-solid fa-camera"></i></div>
+      </label>
+      <div>
+        <input
+          id="profileNickname"
+          type="text"
+          placeholder="현재 닉네임"
+          value=""
+        />
+      </div>
+      <br />
+
+      <input id="profileBtn" type="submit" value="프로필 변경" />
+      <button class="loginBtn" onclick="logout()">로그아웃</button>
+    </form>
+  </section>
+</div>

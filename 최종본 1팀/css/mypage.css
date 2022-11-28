@@ -1,0 +1,141 @@
+#mainPageBtn {
+  background-color: black;
+  color: white;
+  border: 0;
+  cursor: pointer;
+}
+#mainPageBtn:hover {
+  background-color: #0d99ff;
+}
+
+/* 타이틀 & 댓글 리스트 */
+
+.title-and-comment {
+  width: 100%;
+  height: 68%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  transform: translateY(-50px);
+  /* z-index: 888; */
+}
+
+.title-and-comment .title {
+  font-size: var(--font-large);
+  font-weight: 700;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.title-and-comment #mypage-list {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+.title-and-comment #mypage-list .mycards {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.title-and-comment #mypage-list .mycards .card.commentCard .card-body {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: var(--white-color);
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
+}
+
+.title-and-comment #mypage-list .title-text {
+  font-size: var(--font-regular);
+  background-color: var(--black-color);
+  color: white;
+  font-weight: 700;
+  height: 50px;
+  width: 100%;
+  padding-left: 10px;
+  line-height: 50px;
+}
+
+.title-and-comment #mypage-list #card-text {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+  height: auto;
+  font-size: var(--font-small);
+  border-bottom: 1px solid var(--grey-dark-color);
+}
+
+.title-and-comment #mypage-list .commentText {
+  padding-top: 20px;
+  height: 80px;
+  font-size: var(--font-small);
+}
+
+.title-and-comment #mypage-list .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px; */
+  width: 100%;
+}
+
+.title-and-comment #mypage-list .cmtAt {
+  color: var(--grey-dark-color);
+  /* margin-right: 6rem; */
+}
+
+.title-and-comment #mypage-list #likeAndhate {
+  display: flex;
+  flex-direction: row;
+  /* width: 300px; */
+}
+
+#mypage-list .card-footer #likeAndhate .like,
+#mypage-list .card-footer #likeAndhate .hate {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-right: 5px;
+}
+
+.card-footer #likeAndhate input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 30px;
+  text-align: center;
+  font-size: var(--font-small);
+  font-weight: 300;
+}
+
+.title-and-comment #mypage-list .profileAndName {
+  display: none;
+}
+
+.title-and-comment .form-write-comment {
+  display: none;
+}
+
+/* 반응형 */
+
+@media screen and (max-width: 768px) {
+  .title-and-comment #mypage-list {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+  }
+
+  .title-and-comment #mypage-list .title-text {
+    font-size: 18px;
+    height: auto;
+  }
+}
