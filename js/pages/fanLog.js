@@ -291,46 +291,33 @@ export const getCommentList = async (time) => {
 
 export const getHomePageList = (target) => {
   const { photoURL, displayName } = authService.currentUser;
-  const temp_html = ` <div class="main-knowledge-box">
-  <div class="main-knowledge-text__basebox">
-    <span class="main-knowledge-text">
-      1조에서 가장 코딩 잘하는 사람 <br />
-      과연 누구일까요?? 나다 이새기야
-    </span>
-  </div>
-</div>
-<div id="left-right-page">
-  <button onclick="beforePage()" type="button" id="left-page">
-    <i class="fa-solid fa-chevron-left"></i>
-  </button>
-  <button onclick="nextPage()" type="button" id="right-page">
-    <i class="fa-solid fa-chevron-right"></i>
-  </button>
-</div>
+  const temp_html = ` 
 <div class="form-write-comment">
-  <div class="form-write-nickname">
-    <img
-      id="profileImg"
-      width="50em"
-      height="50em"
-      src="${photoURL ?? "/assets/blankProfile.webp"}"
-    />
-    <span id="nickname">${displayName ?? "닉네임 없음"}</span>
-  </div>
-  <div class="write-comment__textbox">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="댓글을 입력해주세요...1"
-      id="comment"
-    />
-    <button
-      onclick="save_comment(event)"
-      type="button"
-      class="write-comment__btn"
-    >
-      댓글 등록
-    </button>
+<div class="form-write-title">
+<span>댓글 작성하기</span>
+</div>
+<div class="write-comment__textbox">
+<img
+  class="profileImage"
+  id="profileImg"
+  width="50em"
+  height="50em"
+  src="${photoURL ?? "/assets/blankProfile.webp"}"
+/>
+<span id="nickname" class="nickname">${displayName ?? "닉네임"}</span>
+<input
+  type="text"
+  class="form-control"
+  placeholder="댓글을 입력해주세요"
+  id="comment"
+/>
+<button
+  onclick="save_comment(event)"
+  type="button"
+  class="write-comment__btn"
+>
+V
+</button>
   </div>
 </div>`;
   const wrap = document.querySelector(".wrap");
